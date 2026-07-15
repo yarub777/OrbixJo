@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orbix — Build Like An Engineer</title>
@@ -11,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 /* ============================================================
    1. TOKENS
@@ -953,41 +953,30 @@ p{margin:0}
 /* ============================================================
    RESPONSIVE DESIGN (موبايل)
    ============================================================ */
-
-/* إصلاح عام للموبايل */
-@media (max-width: 600px) {
-  /* 1. تصغير حجم الصندوق (البوكس) ليحتوي داخل الشاشة */
-  :root {
-    --cm: 0.8vw; /* استخدام وحدات نسبية لعرض الشاشة */
-  }
-
-  body {
-    overflow-x: hidden; /* يمنع ظهور شريط التمرير الأفقي المزعج */
-  }
-
-  /* 2. تحريك الفقاعة (Chat Bubble) لتصبح في الأعلى بوضوح */
-  .chat-bubble {
-    position: relative !important;
-    width: 90% !important;
-    margin: 20px auto !important;
-    top: 0 !important;
-    right: 0 !important;
-    transform: none !important;
-  }
-
-  /* 3. تصغير النصوص لتناسب حجم الشاشة */
-  h1 {
-    font-size: 2rem !important;
-    line-height: 1.1 !important;
-  }
-
-  /* 4. تعديل تنسيق العنوان الفرعي والفقرة */
-  .hero-content {
-    padding: 10px;
-    text-align: center;
-  }
+/* هذه القاعدة تجعل كل شيء داخل إطار الشاشة ولا يخرج عنها */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* يمنع الزحف الجانبي */
 }
 
+/* استخدام نسبة مئوية بدلاً من القيم الثابتة للهواتف */
+@media (max-width: 768px) {
+  .hero-content, .container, .wall {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 10px !important;
+  }
+
+  /* تصغير أي عنصر قد يكون سبباً في التمدد */
+  img, svg, .hero__character {
+    max-width: 90% !important;
+    height: auto !important;
+  }
+}
 
 </style>
 </head>
