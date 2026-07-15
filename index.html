@@ -948,6 +948,50 @@ p{margin:0}
   .rig{transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-30deg)) scale(calc(var(--sc,1) * .54))}
   .drawer{width:100%}
 }
+
+   /* ============================================================
+   RESPONSIVE DESIGN (موبايل)
+   ============================================================ */
+
+/* شاشات الهواتف الأصغر من 600 بكسل */
+@media (max-width: 600px) {
+  /* 1. تصغير حجم البوكس ليناسب شاشة الهاتف */
+  :root {
+    --cm: 0.7vh; /* تقليل حجم الوحدة الأساسية */
+  }
+
+  /* 2. تحريك الفقاعة لتكون في الأعلى وتناسب العرض */
+  .chat-bubble {
+    width: 90%;
+    right: 5%;
+    bottom: 60%;
+    padding: 16px;
+    font-size: 0.9rem;
+  }
+
+  /* 3. تصغير الشخصية */
+  .hero__character {
+    width: 250px;
+  }
+
+  /* 4. تعديل نصوص العنوان (Build like an engineer) */
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  /* 5. جعل منطقة الإدخال مريحة للأصابع */
+  .chat-input-area input {
+    padding: 10px;
+  }
+}
+
+/* تعديل عرض حاوية الموقع الرئيسية */
+.container {
+  overflow-x: hidden; /* لمنع ظهور شريط تمرير أفقي */
+  padding: 0 15px;
+}
+
+   
 </style>
 </head>
 
