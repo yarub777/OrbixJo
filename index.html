@@ -10,13 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 /* ============================================================
    1. TOKENS
    ============================================================ */
 :root{
-  /* brand */
   --red:#E8434F;
   --red-deep:#C9313D;
   --yellow:#FFC629;
@@ -30,7 +28,6 @@
   --ink-soft:#5A6472;
   --line:#12181F;
 
-  /* cardboard */
   --board-lit:#FCFBF8;
   --board-mid:#EFEBE3;
   --board-dim:#DCD6CA;
@@ -40,12 +37,10 @@
   --kraft-dim:#A5743F;
   --kraft-deep:#8A5E30;
 
-  /* type */
   --display:"Montserrat", system-ui, sans-serif;
   --body:"Nunito", system-ui, sans-serif;
   --mono:"JetBrains Mono", ui-monospace, monospace;
 
-  /* structure */
   --cm:5px;
   --shell:1200px;
   --gut:clamp(20px, 5vw, 48px);
@@ -107,16 +102,8 @@ p{margin:0}
 .btn[disabled]{opacity:.45;pointer-events:none}
 
 /* ============================================================
-   3. TOP BANNER + NAV
+   3. NAV
    ============================================================ */
-.topbar{
-  background:var(--navy);color:#fff;
-  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
-  padding:9px var(--gut);text-align:center;
-}
-.topbar .stars{color:var(--yellow);letter-spacing:2px}
-.topbar .dot{opacity:.35;margin-inline:10px}
-
 .nav{
   position:sticky;top:0;z-index:60;
   background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
@@ -125,13 +112,7 @@ p{margin:0}
 }
 .nav.is-stuck{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px rgba(0,0,0,.5)}
 .nav__inner{display:flex;align-items:center;gap:28px;height:72px}
-
-.nav__inner .logo img {
-  height: 35px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+.nav__inner .logo img { height: 35px; width: auto; object-fit: contain; display: block; }
 
 .nav__links{display:flex;gap:26px;margin-left:auto}
 .nav__links a{
@@ -163,399 +144,108 @@ p{margin:0}
 /* ============================================================
    HERO CHATBOT & CHARACTER
    ============================================================ */
-/* ============================================================
-   HERO CHATBOT & CHARACTER (V2 - PREMIUM DESIGN)
-   ============================================================ */
-/* ============================================================
-   HERO CHATBOT & CHARACTER (V3 - AWESOME DESIGN)
-   ============================================================ */
-.hero__character {
-  position: relative;
-  width: min(340px, 85%);
-  z-index: 2;
-  animation: float 6s ease-in-out infinite;
-  object-fit: contain;
-}
+.hero__character { position: relative; width: min(340px, 85%); z-index: 2; animation: float 6s ease-in-out infinite; object-fit: contain; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* 1. تصميم الفقاعة (Chat Bubble) الأساسي */
 .chat-bubble {
-  position: absolute;
-  bottom: 70%; 
-  right: -5%;
-  background: #ffffff;
-  color: var(--ink);
-  padding: 24px;
-  border-radius: 20px; /* حواف دائرية ناعمة */
-  border: 3px solid var(--line); /* إطار داكن واضح */
-  box-shadow: 8px 8px 0px rgba(18, 24, 31, 0.15); /* ظل صلب وجميل */
-  width: 340px;
-  z-index: 10;
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
+  position: absolute; bottom: 70%; right: -5%;
+  background: #ffffff; color: var(--ink); padding: 24px; border-radius: 20px;
+  border: 3px solid var(--line); box-shadow: 8px 8px 0px rgba(18, 24, 31, 0.15);
+  width: 340px; z-index: 10; opacity: 0; transform: translateY(20px) scale(0.95);
   animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.8s;
 }
-
-/* 2. ذيل الفقاعة (المثلث الذي يؤشر على الشخصية) */
-.chat-bubble::after {
-  content: "";
-  position: absolute;
-  bottom: -22px; /* طول الذيل */
-  left: 45px; /* 👈 التحكم بمكان الذيل أفقياً (قرّبه أو أبعده عن الفم من هنا) */
-  border-width: 22px 0 0 20px; /* شكل مثلث مائل لليسار باتجاه الفم */
-  border-style: solid;
-  border-color: var(--line) transparent transparent transparent;
-}
-.chat-bubble::before {
-  content: "";
-  position: absolute;
-  bottom: -16px;
-  left: 48px; /* 👈 يجب أن يكون أكبر من الرقم أعلاه بـ 3px دائماً */
-  border-width: 17px 0 0 14px;
-  border-style: solid;
-  border-color: #ffffff transparent transparent transparent;
-  z-index: 1;
-}
-
-@keyframes popIn {
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* 3. تنسيق النصوص داخل المحادثة */
-.chat-content p {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.5;
-  color: var(--navy-deep);
-  margin-bottom: 12px;
-}
+.chat-bubble::after { content: ""; position: absolute; bottom: -22px; left: 45px; border-width: 22px 0 0 20px; border-style: solid; border-color: var(--line) transparent transparent transparent; }
+.chat-bubble::before { content: ""; position: absolute; bottom: -16px; left: 48px; border-width: 17px 0 0 14px; border-style: solid; border-color: #ffffff transparent transparent transparent; z-index: 1; }
+@keyframes popIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+.chat-content p { font-size: 1rem; font-weight: 600; line-height: 1.5; color: var(--navy-deep); margin-bottom: 12px; }
 .chat-content p:last-child { margin-bottom: 0; }
+.chat-content b { font-family: var(--display); font-weight: 900; color: var(--line); }
+.chat-input-area { display: flex; gap: 12px; margin-top: 20px; align-items: center; }
+.chat-input-area input { flex: 1; padding: 12px 16px; border: 2px solid var(--line); border-radius: 12px; font-family: var(--body); font-size: 0.95rem; font-weight: 600; color: var(--line); outline: none; transition: all 0.2s ease; }
+.chat-input-area input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47, 125, 225, 0.2); }
+#chatSend { width: 48px; height: 48px; border-radius: 12px; border: 2px solid var(--line); background-color: var(--yellow); color: var(--line); display: grid; place-items: center; box-shadow: 4px 4px 0px var(--line); transition: all 0.1s ease; cursor: pointer; flex-shrink: 0; }
+#chatSend svg { width: 22px; height: 22px; stroke-width: 3; }
+#chatSend:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--line); }
 
-.chat-content b {
-  font-family: var(--display);
-  font-weight: 900;
-  color: var(--line);
-}
-
-/* 4. منطقة الإدخال (Input Area) */
-.chat-input-area {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  align-items: center;
-}
-
-/* حقل الكتابة */
-.chat-input-area input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 2px solid var(--line);
-  border-radius: 12px;
-  font-family: var(--body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--line);
-  outline: none;
-  transition: all 0.2s ease;
-}
-.chat-input-area input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(47, 125, 225, 0.2);
-}
-
-/* 5. زر الإرسال (التصميم المميز باللون الأصفر) */
-#chatSend {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  border: 2px solid var(--line);
-  background-color: var(--yellow);
-  color: var(--line);
-  display: grid;
-  place-items: center;
-  box-shadow: 4px 4px 0px var(--line); /* ظل الزر البارز */
-  transition: all 0.1s ease;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-#chatSend svg {
-  width: 22px;
-  height: 22px;
-  stroke-width: 3;
-}
-
-/* حركة الزر عند الضغط (يضغط للأسفل) */
-#chatSend:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px var(--line);
-}
 /* ============================================================
    4. HERO
    ============================================================ */
 .hero{
-  position:relative;isolation:isolate;overflow:hidden;
-  background:var(--navy-deep);color:#fff;
-  min-height:min(88vh,760px);display:grid;align-items:center;
-  padding-block:clamp(60px,8vw,96px);
+  position:relative;isolation:isolate;overflow:hidden; background:var(--navy-deep);color:#fff;
+  min-height:min(88vh,760px);display:grid;align-items:center; padding-block:clamp(60px,8vw,96px);
 }
-.hero__fallback{
-  position:absolute;inset:0;z-index:-3;
-  background:
-    radial-gradient(80% 65% at 15% 0%, #1B4A85 0%, transparent 60%),
-    radial-gradient(70% 60% at 95% 100%, #7A1C2A 0%, transparent 55%),
-    linear-gradient(160deg,var(--navy) 0%, var(--navy-deep) 100%);
-}
+.hero__fallback{ position:absolute;inset:0;z-index:-3; background: radial-gradient(80% 65% at 15% 0%, #1B4A85 0%, transparent 60%), radial-gradient(70% 60% at 95% 100%, #7A1C2A 0%, transparent 55%), linear-gradient(160deg,var(--navy) 0%, var(--navy-deep) 100%); }
 .hero__video{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;opacity:.55}
-.hero__overlay{
-  position:absolute;inset:0;z-index:-1;
-  background:
-    linear-gradient(90deg, rgba(10,25,48,.94) 0%, rgba(10,25,48,.75) 45%, rgba(10,25,48,.35) 100%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 44px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 44px);
-}
+.hero__overlay{ position:absolute;inset:0;z-index:-1; background: linear-gradient(90deg, rgba(10,25,48,.94) 0%, rgba(10,25,48,.75) 45%, rgba(10,25,48,.35) 100%), repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 44px), repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 44px); }
 .hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
 .hero__eyebrow{color:var(--yellow)}
 .hero h1{font-size:clamp(52px,9.2vw,124px);text-transform:uppercase;margin:18px 0 22px}
 .hero h1 .line{display:block}
 .hero h1 em{font-style:normal;color:var(--yellow);position:relative;display:inline-block}
-.hero h1 em::after{
-  content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.12em;
-  background:var(--red);z-index:-1;transform:skewY(-1.2deg);
-}
+.hero h1 em::after{ content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.12em; background:var(--red);z-index:-1;transform:skewY(-1.2deg); }
 .hero__copy{max-width:46ch;color:rgba(255,255,255,.82);font-size:1.1rem}
 .hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
-.hero__spec{
-  margin-top:38px;padding-top:20px;border-top:1px dashed rgba(255,255,255,.28);
-  display:flex;flex-wrap:wrap;gap:12px 26px;list-style:none;padding-left:0;
-  font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.62);
-}
+.hero__spec{ margin-top:38px;padding-top:20px;border-top:1px dashed rgba(255,255,255,.28); display:flex;flex-wrap:wrap;gap:12px 26px;list-style:none;padding-left:0; font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.62); }
 .hero__spec b{color:var(--yellow);font-weight:700}
-
 .hero__art{position:relative;display:grid;place-items:center}
-.hero__burst{
-  position:absolute;width:min(420px,80%);aspect-ratio:1;border-radius:50%;
-  background:var(--yellow);animation:breathe 7s ease-in-out infinite;
-}
+.hero__burst{ position:absolute;width:min(420px,80%);aspect-ratio:1;border-radius:50%; background:var(--yellow);animation:breathe 7s ease-in-out infinite; }
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
 /* ============================================================
-   5. SCROLLYTELLING — the cardboard box
+   5. SCROLLYTELLING
    ============================================================ */
 .scrolly{position:relative;background:var(--navy);color:#fff}
 .scrolly__track{height:520vh}
-.scrolly__stage{
-  position:sticky;top:0;height:100vh;
-  display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;overflow:hidden;
-}
-.scrolly__stage::before{
-  content:"";position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 56px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 56px);
-  mask-image:radial-gradient(70% 70% at 50% 50%, #000 40%, transparent 100%);
-  pointer-events:none;
-}
+.scrolly__stage{ position:sticky;top:0;height:100vh; display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;overflow:hidden; }
+.scrolly__stage::before{ content:"";position:absolute;inset:0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 56px), repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 56px); mask-image:radial-gradient(70% 70% at 50% 50%, #000 40%, transparent 100%); pointer-events:none; }
 .scrolly__text{padding-inline:var(--gut);position:relative;z-index:3;max-width:550px;justify-self:end}
-.scrolly__steps {
-  position: relative;
-  min-height: 360px; /* تم تكبير الارتفاع لمنع تداخل النص مع القائمة */
-}
-
-/* تثبيت النصوص الجانبية في زوايا الشاشة براحة أكبر لمنع التداخل مع الصناديق */
-.annot--tl { top: 5%; left: 2%; text-align: left; }
-.annot--tr { top: 5%; right: 2%; text-align: right; }
-.annot--bl { bottom: 10%; left: 2%; text-align: left; }
-.annot--br { bottom: 10%; right: 2%; text-align: right; }
-
-/* ضبط اتجاه الأسهم */
-.annot--tl .annot__arrow { margin-left: 0; transform: scaleX(1); }
-.annot--tr .annot__arrow { margin-left: auto; transform: scaleX(-1); }
-.annot--bl .annot__arrow { margin-left: 0; transform: scale(1,-1); }
-.annot--br .annot__arrow { margin-left: auto; transform: scale(-1,-1); }
-.step{
-  position:absolute;inset:0;opacity:0;transform:translateY(14px);
-  transition:opacity .45s var(--ease), transform .45s var(--ease);pointer-events:none;
-}
+.scrolly__steps { position: relative; min-height: 360px; }
+.annot--tl { top: 5%; left: 2%; text-align: left; } .annot--tr { top: 5%; right: 2%; text-align: right; } .annot--bl { bottom: 10%; left: 2%; text-align: left; } .annot--br { bottom: 10%; right: 2%; text-align: right; }
+.annot--tl .annot__arrow { margin-left: 0; transform: scaleX(1); } .annot--tr .annot__arrow { margin-left: auto; transform: scaleX(-1); } .annot--bl .annot__arrow { margin-left: 0; transform: scale(1,-1); } .annot--br .annot__arrow { margin-left: auto; transform: scale(-1,-1); }
+.step{ position:absolute;inset:0;opacity:0;transform:translateY(14px); transition:opacity .45s var(--ease), transform .45s var(--ease);pointer-events:none; }
 .step.is-active{opacity:1;transform:none;pointer-events:auto}
 .step__index{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--yellow)}
 .step h3{font-size:clamp(30px,3.6vw,48px);text-transform:uppercase;margin:12px 0 14px}
 .step p{color:rgba(255,255,255,.75);max-width:42ch}
-
 .rail{margin-top:38px;display:grid;gap:30px;list-style:none;padding:0}
-.rail__item{
-  display:flex;align-items:center;gap:12px;
-  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.4);transition:color .3s var(--ease);
-}
+.rail__item{ display:flex;align-items:center;gap:12px; font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase; color:rgba(255,255,255,.4);transition:color .3s var(--ease); }
 .rail__item i{width:10px;height:10px;border-radius:2px;border:2px solid rgba(255,255,255,.35);transition:all .3s var(--ease)}
 .rail__item.is-on{color:#fff}
 .rail__item.is-on i{background:var(--yellow);border-color:var(--yellow);transform:rotate(45deg)}
-
-.scene{
-  position:relative;z-index:1;height:100%;
-  display:grid;place-items:center;
-  perspective:1600px;perspective-origin:50% 44%;
-}
-.rig{
-  position:relative;transform-style:preserve-3d;
-  transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-30deg)) scale(var(--sc,1));
-  will-change:transform;
-}
-.rig__shadow{
-  position:absolute;top:50%;left:50%;width:calc(46 * var(--cm));height:calc(46 * var(--cm));
-  transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(-25.5 * var(--cm)));
-  background:radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0) 72%);
-  filter:blur(6px);
-}
-.box{
-  position:relative;transform-style:preserve-3d;
-  width:calc(32 * var(--cm));height:calc(50 * var(--cm));
-}
-
-/* إعداد الغلاف الخارجي للبوكس */
-.wall {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: calc(32 * var(--cm)); height: calc(50 * var(--cm));
-  border: 2px solid rgba(18,24,31,.55);
-  
-  /* 1. ضع اسم صورتك هنا */
-  background-image: url('box-template.png'); 
-  
-  /* 2. نكبر الصورة 4 أضعاف لتغطي الأوجه الأربعة، ونخفي الطيات العلوية */
-  background-size: 415% 135%; 
-  background-repeat: no-repeat;
-  box-shadow: inset 0 -18px 26px -16px rgba(0,0,0,.28);
-}
-
-/* 3. الآن نقوم بـ "قص" كل وجه ليأخذ مكانه الصحيح من الصورة */
-.wall--front { 
-  transform: translate(-50%,-50%) translateZ(calc(16 * var(--cm))); 
-  background-position: 100% 50%; /* الجزء الأيمن (اللوجو الكبير) */
-}
-.wall--right { 
-  transform: translate(-50%,-50%) rotateY(90deg) translateZ(calc(16 * var(--cm))); 
-  background-position: 66% 50%; /* الوجه الجانبي */
-  filter: brightness(.87); 
-}
-.wall--back { 
-  transform: translate(-50%,-50%) rotateY(180deg) translateZ(calc(16 * var(--cm))); 
-  background-position: 33% 50%; /* الوجه الخلفي */
-  filter: brightness(.9); 
-}
-.wall--left { 
-  transform: translate(-50%,-50%) rotateY(-90deg) translateZ(calc(16 * var(--cm))); 
-  background-position: 0% 50%; /* الوجه الجانبي الأيسر */
-  filter: brightness(.94); 
-}
-.wall::before{
-  content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:5px;
-  background:repeating-linear-gradient(90deg, var(--board-edge) 0 1.5px, var(--board-lit) 1.5px 4px);
-  border-bottom:1px solid rgba(18,24,31,.35);
-}
-.wall--left::after,.wall--right::after{
-  content:"";position:absolute;top:calc(4 * var(--cm));left:50%;transform:translateX(-50%);
-  width:calc(14 * var(--cm));height:calc(3 * var(--cm));border-radius:100px;
-  background:#3B3128;border:2px solid rgba(18,24,31,.5);
-  box-shadow:inset 0 3px 5px rgba(0,0,0,.55);
-}
-
-.wall--in{
-  position:absolute;top:50%;left:50%;
-  width:calc(31.4 * var(--cm));height:calc(49 * var(--cm));
-  background-image:
-    repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 2px, transparent 2px 5px),
-    linear-gradient(180deg, var(--kraft-lit) 0%, var(--kraft-mid) 45%, var(--kraft-dim) 100%);
-}
+.scene{ position:relative;z-index:1;height:100%; display:grid;place-items:center; perspective:1600px;perspective-origin:50% 44%; }
+.rig{ position:relative;transform-style:preserve-3d; transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-30deg)) scale(var(--sc,1)); will-change:transform; }
+.rig__shadow{ position:absolute;top:50%;left:50%;width:calc(46 * var(--cm));height:calc(46 * var(--cm)); transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(-25.5 * var(--cm))); background:radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0) 72%); filter:blur(6px); }
+.box{ position:relative;transform-style:preserve-3d; width:calc(32 * var(--cm));height:calc(50 * var(--cm)); }
+.wall { position: absolute; top: 50%; left: 50%; width: calc(32 * var(--cm)); height: calc(50 * var(--cm)); border: 2px solid rgba(18,24,31,.55); background-image: url('box-template.png'); background-size: 415% 135%; background-repeat: no-repeat; box-shadow: inset 0 -18px 26px -16px rgba(0,0,0,.28); }
+.wall--front { transform: translate(-50%,-50%) translateZ(calc(16 * var(--cm))); background-position: 100% 50%; }
+.wall--right { transform: translate(-50%,-50%) rotateY(90deg) translateZ(calc(16 * var(--cm))); background-position: 66% 50%; filter: brightness(.87); }
+.wall--back { transform: translate(-50%,-50%) rotateY(180deg) translateZ(calc(16 * var(--cm))); background-position: 33% 50%; filter: brightness(.9); }
+.wall--left { transform: translate(-50%,-50%) rotateY(-90deg) translateZ(calc(16 * var(--cm))); background-position: 0% 50%; filter: brightness(.94); }
+.wall::before{ content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:5px; background:repeating-linear-gradient(90deg, var(--board-edge) 0 1.5px, var(--board-lit) 1.5px 4px); border-bottom:1px solid rgba(18,24,31,.35); }
+.wall--left::after,.wall--right::after{ content:"";position:absolute;top:calc(4 * var(--cm));left:50%;transform:translateX(-50%); width:calc(14 * var(--cm));height:calc(3 * var(--cm));border-radius:100px; background:#3B3128;border:2px solid rgba(18,24,31,.5); box-shadow:inset 0 3px 5px rgba(0,0,0,.55); }
+.wall--in{ position:absolute;top:50%;left:50%; width:calc(31.4 * var(--cm));height:calc(49 * var(--cm)); background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 2px, transparent 2px 5px), linear-gradient(180deg, var(--kraft-lit) 0%, var(--kraft-mid) 45%, var(--kraft-dim) 100%); }
 .in--front{transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(-15.4 * var(--cm)));filter:brightness(.78)}
 .in--back {transform:translate(-50%,-50%) translateZ(calc(-15.4 * var(--cm)));filter:brightness(1.02)}
 .in--right{transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(-15.4 * var(--cm)));filter:brightness(.84)}
 .in--left {transform:translate(-50%,-50%) rotateY(90deg)  translateZ(calc(-15.4 * var(--cm)));filter:brightness(.92)}
-.floor{
-  position:absolute;top:50%;left:50%;
-  width:calc(31.4 * var(--cm));height:calc(31.4 * var(--cm));
-  transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(-24.4 * var(--cm)));
-  background-image:
-    radial-gradient(120% 120% at 50% 50%, rgba(0,0,0,0) 42%, rgba(0,0,0,.45) 100%),
-    repeating-linear-gradient(45deg, rgba(0,0,0,.03) 0 3px, transparent 3px 7px),
-    linear-gradient(160deg, var(--kraft-mid), var(--kraft-deep));
-}
-.rim{
-  position:absolute;top:50%;left:50%;
-  width:calc(33 * var(--cm));height:calc(33 * var(--cm));
-  transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(25.4 * var(--cm)));
-  border:6px solid var(--board-edge);
-  border-image:repeating-linear-gradient(90deg, var(--board-edge) 0 2px, var(--board-lit) 2px 5px) 6;
-}
-
-.gauge{
-  position:absolute;top:50%;left:50%;
-  width:calc(11 * var(--cm));height:calc(50 * var(--cm));
-  transform:translate(-50%,-50%) translateX(calc(-25 * var(--cm)));
-  display:flex;flex-direction:column;justify-content:flex-end;
-  opacity:var(--gauge,1);transition:opacity .25s linear;
-}
+.floor{ position:absolute;top:50%;left:50%; width:calc(31.4 * var(--cm));height:calc(31.4 * var(--cm)); transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(-24.4 * var(--cm))); background-image: radial-gradient(120% 120% at 50% 50%, rgba(0,0,0,0) 42%, rgba(0,0,0,.45) 100%), repeating-linear-gradient(45deg, rgba(0,0,0,.03) 0 3px, transparent 3px 7px), linear-gradient(160deg, var(--kraft-mid), var(--kraft-deep)); }
+.rim{ position:absolute;top:50%;left:50%; width:calc(33 * var(--cm));height:calc(33 * var(--cm)); transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(25.4 * var(--cm))); border:6px solid var(--board-edge); border-image:repeating-linear-gradient(90deg, var(--board-edge) 0 2px, var(--board-lit) 2px 5px) 6; }
+.gauge{ position:absolute;top:50%;left:50%; width:calc(11 * var(--cm));height:calc(50 * var(--cm)); transform:translate(-50%,-50%) translateX(calc(-25 * var(--cm))); display:flex;flex-direction:column;justify-content:flex-end; opacity:var(--gauge,1);transition:opacity .25s linear; }
 .gauge::before{content:"";position:absolute;right:0;top:0;bottom:0;width:1px;background:rgba(255,255,255,.35)}
-.gauge__seg{
-  height:calc(10 * var(--cm));border-top:1px dashed rgba(255,255,255,.4);
-  display:flex;align-items:center;justify-content:flex-end;padding-right:5px;
-  font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:rgba(255,255,255,.5);
-}
-.gauge__total{
-  position:absolute;top:-2px;right:5px;
-  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--yellow);
-}
-
+.gauge__seg{ height:calc(10 * var(--cm));border-top:1px dashed rgba(255,255,255,.4); display:flex;align-items:center;justify-content:flex-end;padding-right:5px; font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:rgba(255,255,255,.5); }
+.gauge__total{ position:absolute;top:-2px;right:5px; font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--yellow); }
 .hinge{position:absolute;top:50%;left:50%;width:0;height:0;transform-style:preserve-3d}
 .hinge--back {transform:translateY(calc(-25 * var(--cm))) translateZ(calc(-16 * var(--cm)))}
 .hinge--front{transform:translateY(calc(-25 * var(--cm))) translateZ(calc(16 * var(--cm))) rotateY(180deg)}
 .hinge--left {transform:translateY(calc(-25 * var(--cm))) translateX(calc(-16 * var(--cm))) rotateY(90deg)}
 .hinge--right{transform:translateY(calc(-25 * var(--cm))) translateX(calc(16 * var(--cm))) rotateY(-90deg)}
-.flap{
-  position:absolute;top:0;left:0;transform-origin:top center;transform-style:preserve-3d;
-  transform:translateX(-50%) rotateX(calc(90deg + var(--f,0deg)));
-  width:calc(32 * var(--cm));height:calc(15.8 * var(--cm));
-  will-change:transform;
-}
-.flap__face{
-  position:absolute;inset:0;border:2px solid rgba(18,24,31,.55);backface-visibility:hidden;
-  display:grid;place-items:center;
-}
-.flap__face--up{
-  background-image:
-    repeating-linear-gradient(112deg, rgba(0,0,0,.028) 0 1px, transparent 1px 3px),
-    linear-gradient(180deg, var(--board-lit), var(--board-mid));
-}
-.flap__face--down{
-  transform:rotateY(180deg);
-  background-image:
-    repeating-linear-gradient(90deg, rgba(0,0,0,.035) 0 2px, transparent 2px 5px),
-    linear-gradient(180deg, var(--kraft-lit), var(--kraft-mid));
-}
-.flap__seam{
-  position:absolute;left:0;right:0;bottom:-2px;height:7px;
-  background:repeating-linear-gradient(90deg, rgba(232,67,79,.85) 0 13px, rgba(232,67,79,.4) 13px 19px);
-  border-top:1px solid rgba(18,24,31,.35);
-}
-
-.tray{
-  position:absolute;top:50%;left:50%;
-  width:calc(29 * var(--cm));height:calc(10 * var(--cm));
-  transform-style:preserve-3d;will-change:transform;
-  transform:translate(-50%,-50%) translate3d(var(--x,0px), var(--y,0px), var(--z,0px));
-}
-.tray__face{
-  position:absolute;top:50%;left:50%;
-  border:2px solid rgba(18,24,31,.6);overflow:hidden;
-  background-image:
-    repeating-linear-gradient(112deg, rgba(0,0,0,.03) 0 1px, transparent 1px 3px),
-    linear-gradient(170deg, var(--board-lit), var(--board-mid));
-}
+.flap{ position:absolute;top:0;left:0;transform-origin:top center;transform-style:preserve-3d; transform:translateX(-50%) rotateX(calc(90deg + var(--f,0deg))); width:calc(32 * var(--cm));height:calc(15.8 * var(--cm)); will-change:transform; }
+.flap__face{ position:absolute;inset:0;border:2px solid rgba(18,24,31,.55);backface-visibility:hidden; display:grid;place-items:center; }
+.flap__face--up{ background-image: repeating-linear-gradient(112deg, rgba(0,0,0,.028) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--board-lit), var(--board-mid)); }
+.flap__face--down{ transform:rotateY(180deg); background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.035) 0 2px, transparent 2px 5px), linear-gradient(180deg, var(--kraft-lit), var(--kraft-mid)); }
+.flap__seam{ position:absolute;left:0;right:0;bottom:-2px;height:7px; background:repeating-linear-gradient(90deg, rgba(232,67,79,.85) 0 13px, rgba(232,67,79,.4) 13px 19px); border-top:1px solid rgba(18,24,31,.35); }
+.tray{ position:absolute;top:50%;left:50%; width:calc(29 * var(--cm));height:calc(10 * var(--cm)); transform-style:preserve-3d;will-change:transform; transform:translate(-50%,-50%) translate3d(var(--x,0px), var(--y,0px), var(--z,0px)); }
+.tray__face{ position:absolute;top:50%;left:50%; border:2px solid rgba(18,24,31,.6);overflow:hidden; background-image: repeating-linear-gradient(112deg, rgba(0,0,0,.03) 0 1px, transparent 1px 3px), linear-gradient(170deg, var(--board-lit), var(--board-mid)); }
 .tray__face--f,.tray__face--b,.tray__face--l,.tray__face--r{ width:calc(29 * var(--cm));height:calc(10 * var(--cm)); }
 .tray__face--t,.tray__face--u{width:calc(29 * var(--cm));height:calc(29 * var(--cm))}
 .tray__face--f{transform:translate(-50%,-50%) translateZ(calc(14.5 * var(--cm)))}
@@ -564,87 +254,28 @@ p{margin:0}
 .tray__face--l{transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(14.5 * var(--cm)));filter:brightness(.95)}
 .tray__face--t{transform:translate(-50%,-50%) rotateX(90deg)  translateZ(calc(5 * var(--cm)))}
 .tray__face--u{transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(5 * var(--cm)));filter:brightness(.7)}
-.tray__face::before{
-  content:"";position:absolute;left:0;right:0;top:0;height:3px;
-  background:repeating-linear-gradient(90deg, var(--board-edge) 0 1px, var(--board-lit) 1px 3px);
-}
-.tray__spine{
-  position:absolute;inset:7px 0 0;background:var(--c);
-  display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 9px;
-  border-top:2px solid rgba(18,24,31,.45);
-}
-.tray__spine b{
-  font-family:var(--display);font-weight:900;font-size:12px;letter-spacing:.1em;
-  text-transform:uppercase;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.25);
-}
+.tray__face::before{ content:"";position:absolute;left:0;right:0;top:0;height:3px; background:repeating-linear-gradient(90deg, var(--board-edge) 0 1px, var(--board-lit) 1px 3px); }
+.tray__spine{ position:absolute;inset:7px 0 0;background:var(--c); display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 9px; border-top:2px solid rgba(18,24,31,.45); }
+.tray__spine b{ font-family:var(--display);font-weight:900;font-size:12px;letter-spacing:.1em; text-transform:uppercase;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.25); }
 .tray__spine i{font-family:var(--mono);font-style:normal;font-size:8px;letter-spacing:.1em;color:rgba(255,255,255,.85)}
-.tray__band{
-  position:absolute;left:0;right:0;top:0;height:calc(5 * var(--cm));
-  background:var(--c);border-bottom:2px solid rgba(18,24,31,.5);
-  display:flex;align-items:center;justify-content:space-between;padding:0 8px;
-  font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:#fff;
-}
+.tray__band{ position:absolute;left:0;right:0;top:0;height:calc(5 * var(--cm)); background:var(--c);border-bottom:2px solid rgba(18,24,31,.5); display:flex;align-items:center;justify-content:space-between;padding:0 8px; font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:#fff; }
 .tray__lid{position:absolute;inset:calc(5 * var(--cm)) 0 0;display:grid;place-items:center;gap:3px}
 .tray__lid svg{width:38px;height:38px}
-.tray__lid .tray__name{
-  font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.04em;text-transform:uppercase;
-}
-.tray__seam{
-  position:absolute;top:calc(5 * var(--cm));bottom:0;left:50%;width:14px;transform:translateX(-50%);
-  border-inline:1px dashed rgba(18,24,31,.2);background:rgba(0,0,0,.02);
-}
-.tray__shadow{
-  position:absolute;top:50%;left:50%;
-  width:calc(34 * var(--cm));height:calc(34 * var(--cm));
-  transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(-7 * var(--cm)));
-  background:radial-gradient(closest-side, rgba(0,0,0,.42), rgba(0,0,0,0) 70%);
-  opacity:var(--shade,0);filter:blur(5px);
-}
-
-.slot{
-  position:absolute;top:50%;left:50%;
-  width:calc(31 * var(--cm));height:calc(31 * var(--cm));
-  transform:translate(-50%,-50%) translate3d(var(--sx), calc(-39 * var(--cm)), var(--sz)) rotateX(90deg);
-  border:2px dashed var(--c);border-radius:6px;background:rgba(255,255,255,.04);
-  opacity:calc(var(--on,0) * .7);transition:opacity .2s linear;
-}
+.tray__lid .tray__name{ font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.04em;text-transform:uppercase; }
+.tray__seam{ position:absolute;top:calc(5 * var(--cm));bottom:0;left:50%;width:14px;transform:translateX(-50%); border-inline:1px dashed rgba(18,24,31,.2);background:rgba(0,0,0,.02); }
+.tray__shadow{ position:absolute;top:50%;left:50%; width:calc(34 * var(--cm));height:calc(34 * var(--cm)); transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(-7 * var(--cm))); background:radial-gradient(closest-side, rgba(0,0,0,.42), rgba(0,0,0,0) 70%); opacity:var(--shade,0);filter:blur(5px); }
+.slot{ position:absolute;top:50%;left:50%; width:calc(31 * var(--cm));height:calc(31 * var(--cm)); transform:translate(-50%,-50%) translate3d(var(--sx), calc(-39 * var(--cm)), var(--sz)) rotateX(90deg); border:2px dashed var(--c);border-radius:6px;background:rgba(255,255,255,.04); opacity:calc(var(--on,0) * .7);transition:opacity .2s linear; }
 .slot::after{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.16);border-radius:3px}
-
-/* --- annotation arrows (Fixed overlap) --- */
 .annots{position:absolute;inset:0;z-index:2;pointer-events:none}
-.annot{
-  position:absolute;width:210px;
-  opacity:0;transform:translateY(8px) scale(.9);
-  transition:opacity .25s linear, transform .45s cubic-bezier(.2,1.35,.3,1);
-}
+.annot{ position:absolute;width:210px; opacity:0;transform:translateY(8px) scale(.9); transition:opacity .25s linear, transform .45s cubic-bezier(.2,1.35,.3,1); }
 .annot.is-on{opacity:1;transform:none}
-.annot__key{
-  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--c);
-}
-.annot__title{
-  font-family:var(--display);font-weight:900;font-size:20px;text-transform:uppercase;
-  color:#fff;margin:2px 0 5px;
-}
+.annot__key{ font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em; text-transform:uppercase;color:var(--c); }
+.annot__title{ font-family:var(--display);font-weight:900;font-size:20px;text-transform:uppercase; color:#fff;margin:2px 0 5px; }
 .annot__desc{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.72)}
 .annot__arrow{width:78px;height:52px;color:var(--c)}
-
-.annot--tl{top:5%;left:50%;margin-left:-480px;text-align:right}
-.annot--tr{top:5%;right:50%;margin-right:-480px;text-align:left}
-.annot--bl{bottom:15%;left:50%;margin-left:-480px;text-align:right}
-.annot--br{bottom:15%;right:50%;margin-right:-480px;text-align:left}
-
-.annot--tl .annot__arrow{margin-left:auto;transform:scaleX(1)}
-.annot--tr .annot__arrow{transform:scaleX(-1)}
-.annot--bl .annot__arrow{margin-left:auto;transform:scale(1,-1)}
-.annot--br .annot__arrow{transform:scale(-1,-1)}
-
-.scrolly__hint{
-  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;
-  font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);display:flex;align-items:center;gap:10px;
-  opacity:var(--hint,1);transition:opacity .3s linear;
-}
+.annot--tl{top:5%;left:50%;margin-left:-480px;text-align:right} .annot--tr{top:5%;right:50%;margin-right:-480px;text-align:left} .annot--bl{bottom:15%;left:50%;margin-left:-480px;text-align:right} .annot--br{bottom:15%;right:50%;margin-right:-480px;text-align:left}
+.annot--tl .annot__arrow{margin-left:auto;transform:scaleX(1)} .annot--tr .annot__arrow{transform:scaleX(-1)} .annot--bl .annot__arrow{margin-left:auto;transform:scale(1,-1)} .annot--br .annot__arrow{transform:scale(-1,-1)}
+.scrolly__hint{ position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2; font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase; color:rgba(255,255,255,.45);display:flex;align-items:center;gap:10px; opacity:var(--hint,1);transition:opacity .3s linear; }
 .scrolly__hint i{width:1px;height:22px;background:rgba(255,255,255,.4);animation:drop 1.6s infinite var(--ease)}
 @keyframes drop{0%{transform:scaleY(.2);transform-origin:top}60%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:bottom}}
 
@@ -654,136 +285,202 @@ p{margin:0}
 .kits{background:var(--paper-2)}
 .kits__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:66px}
 .kits__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-
-.card{
-  position:relative;background:#fff;border:var(--stroke) solid var(--line);border-radius:var(--radius);
-  display:flex;flex-direction:column;
-  transition:transform .22s var(--ease), box-shadow .22s var(--ease);
-}
+.card{ position:relative;background:#fff;border:var(--stroke) solid var(--line);border-radius:var(--radius); display:flex;flex-direction:column; transition:transform .22s var(--ease), box-shadow .22s var(--ease); }
 .card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hard)}
-.card__badge{
-  position:absolute;top:0;left:22px;transform:translateY(-50%);
-  background:var(--yellow);color:var(--ink);border:var(--stroke) solid var(--line);
-  border-radius:100px;padding:7px 15px;z-index:2;white-space:nowrap;
-  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-}
-.card__art{
-  height:190px;border-bottom:var(--stroke) solid var(--line);border-radius:15px 15px 0 0;
-  display:grid;place-items:center;background:var(--c);position:relative;overflow:hidden;
-}
-.card__art::before{
-  content:"";position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 1px, transparent 1px 22px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,.07) 0 1px, transparent 1px 22px);
-}
+.card__badge{ position:absolute;top:0;left:22px;transform:translateY(-50%); background:var(--yellow);color:var(--ink);border:var(--stroke) solid var(--line); border-radius:100px;padding:7px 15px;z-index:2;white-space:nowrap; font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase; }
+.card__art{ height:190px;border-bottom:var(--stroke) solid var(--line);border-radius:15px 15px 0 0; display:grid;place-items:center;background:var(--c);position:relative;overflow:hidden; }
+.card__art::before{ content:"";position:absolute;inset:0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 1px, transparent 1px 22px), repeating-linear-gradient(90deg, rgba(0,0,0,.07) 0 1px, transparent 1px 22px); }
 .card__art svg{position:relative;width:88px;height:88px;transition:transform .25s var(--ease)}
 .card:hover .card__art svg{transform:rotate(-6deg) scale(1.08)}
 .card__body{padding:24px 22px 26px;display:flex;flex-direction:column;gap:9px;flex:1}
 .card__body h3{font-size:1.35rem;text-transform:uppercase}
 .card__body p{color:var(--ink-soft);font-size:.95rem}
-.card__meta{
-  margin-top:auto;padding-top:14px;border-top:1px dashed #C9D0DA;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;
-}
+.card__meta{ margin-top:auto;padding-top:14px;border-top:1px dashed #C9D0DA; display:flex;align-items:center;justify-content:space-between;gap:10px; font-family:var(--mono);font-size:11px;letter-spacing:.06em; }
 .card__price{font-family:var(--display);font-weight:900;font-size:1.15rem}
-.card__add{
-  width:100%;margin-top:14px;padding:13px 18px;border-radius:100px;
-  border:var(--stroke) solid var(--line);background:var(--ink);color:#fff;
-  font-family:var(--display);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
-  transition:background .18s var(--ease), transform .18s var(--ease);
-}
+.card__add{ width:100%;margin-top:14px;padding:13px 18px;border-radius:100px; border:var(--stroke) solid var(--line);background:var(--ink);color:#fff; font-family:var(--display);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase; transition:background .18s var(--ease), transform .18s var(--ease); }
 .card__add:hover{background:var(--red);transform:translateY(-2px)}
 .card__add.is-added{background:var(--green)}
-
-.bundle{
-  margin-top:44px;display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;
-  background:var(--navy);color:#fff;border:var(--stroke) solid var(--line);border-radius:var(--radius);
-  padding:clamp(26px,4vw,44px);
-}
+.bundle{ margin-top:44px;display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center; background:var(--navy);color:#fff;border:var(--stroke) solid var(--line);border-radius:var(--radius); padding:clamp(26px,4vw,44px); }
 .bundle h3{font-size:clamp(28px,3.4vw,42px);text-transform:uppercase;margin-bottom:12px}
 .bundle p{color:rgba(255,255,255,.75);max-width:52ch}
 .bundle__list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;list-style:none;padding:0}
-.bundle__list li{
-  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-  border:1.5px solid rgba(255,255,255,.3);border-radius:100px;padding:5px 11px;
-}
+.bundle__list li{ font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase; border:1.5px solid rgba(255,255,255,.3);border-radius:100px;padding:5px 11px; }
 .bundle__buy{display:grid;gap:12px;justify-items:stretch}
 .bundle__price{font-family:var(--display);font-weight:900;font-size:2.6rem;line-height:1}
 .bundle__price s{font-size:1.1rem;color:rgba(255,255,255,.45);font-weight:700;margin-left:8px}
 .bundle__note{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.55);text-align:center}
 
 /* ============================================================
-   7. HOW IT WORKS — blueprint
+   7. ORBIX ACADEMY (COURSES SECTION) - ENGLISH
    ============================================================ */
-.how{
-  position:relative;color:var(--ink);
-  background:
-    linear-gradient(rgba(47,125,225,.06) 0 100%),
-    repeating-linear-gradient(0deg, rgba(47,125,225,.28) 0 1px, transparent 1px 26px),
-    repeating-linear-gradient(90deg, rgba(47,125,225,.28) 0 1px, transparent 1px 26px),
-    repeating-linear-gradient(0deg, rgba(47,125,225,.55) 0 1.5px, transparent 1.5px 130px),
-    repeating-linear-gradient(90deg, rgba(47,125,225,.55) 0 1.5px, transparent 1.5px 130px),
-    #FBFCFE;
-  border-block:var(--stroke) solid var(--line);
+.courses-sec {
+  background: var(--paper-2);
+  border-top: var(--stroke) solid var(--line);
+  position: relative;
 }
+.courses-sec::before {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(0,0,0,.01) 0 2px, transparent 2px 14px);
+  pointer-events: none;
+}
+.courses__grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 34px; margin-top: 50px; position: relative; z-index: 2;
+}
+.c-card {
+  background: #fff; border: var(--stroke) solid var(--line); border-radius: var(--radius);
+  display: flex; flex-direction: column; overflow: hidden;
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+  cursor: pointer;
+}
+.c-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hard); }
+.c-card__art {
+  height: 180px; display: grid; place-items: center; border-bottom: var(--stroke) solid var(--line);
+  position: relative;
+}
+.c-card__badge {
+  position: absolute; top: 16px; left: 16px;
+  border: 2px solid var(--line); border-radius: 100px; padding: 6px 14px;
+  font-family: var(--body); font-weight: 800; font-size: 13px; z-index: 2;
+}
+.c-card__art svg { width: 80px; height: 80px; transition: transform .25s var(--ease); }
+.c-card:hover .c-card__art svg { transform: rotate(5deg) scale(1.1); }
+.c-card__body { padding: 32px 24px; display: flex; flex-direction: column; flex: 1; }
+.c-card h3 { font-size: 1.6rem; color: var(--navy-deep); margin-bottom: 12px; }
+.c-card p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.6; }
+.c-card__btn {
+  margin-top: auto; padding: 12px; border-radius: 100px; text-align: center;
+  border: var(--stroke) solid var(--line); font-family: var(--display); font-weight: 800; font-size: 0.9rem;
+  background: var(--paper-2); transition: background .2s var(--ease);
+}
+.c-card:hover .c-card__btn { background: var(--yellow); }
+
+/* ============================================================
+   LMS PLAYER MODAL (OVERLAY) - ENGLISH & LOCK SYSTEM
+   ============================================================ */
+.lms-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--paper-2); display: none; flex-direction: column;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.lms-modal.is-open { display: flex; opacity: 1; transform: none; }
+.lms-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 32px; background: #fff; border-bottom: var(--stroke) solid var(--line);
+}
+.lms-header h2 { font-size: 1.4rem; color: var(--navy-deep); }
+.lms-close {
+  width: 44px; height: 44px; border-radius: 50%; border: 3px solid var(--line);
+  background: var(--red); color: #fff; font-family: var(--display); font-weight: 900;
+  font-size: 1.2rem; display: grid; place-items: center; transition: transform .2s; cursor: pointer;
+}
+.lms-close:hover { transform: scale(1.1) rotate(90deg); }
+
+.lms-body {
+  display: grid; grid-template-columns: 1fr 400px; gap: 24px; padding: 24px 32px;
+  flex: 1; overflow: hidden; max-width: 1600px; margin: 0 auto; width: 100%;
+}
+.lms-video-area { display: flex; flex-direction: column; gap: 20px; overflow-y: auto; position: relative; }
+.lms-player-wrap {
+  width: 100%; aspect-ratio: 16/9; background: var(--navy-deep);
+  border: var(--stroke) solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow-hard); overflow: hidden; display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.lms-player-wrap video { width: 100%; height: 100%; object-fit: cover; outline: none; }
+
+/* LOCK OVERLAY PROMPT */
+.lms-lock-overlay {
+  position: absolute; inset: 0; background: rgba(10, 25, 48, 0.95); z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; color: #fff; padding: 40px; display: none;
+}
+.lms-lock-overlay.is-active { display: flex; }
+.lms-lock-icon { font-size: 3rem; margin-bottom: 16px; }
+.lms-lock-overlay h3 { font-size: 1.8rem; margin-bottom: 8px; color: var(--yellow); }
+.lms-lock-overlay p { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 400px; margin-bottom: 24px; }
+.lms-lock-input-group { display: flex; gap: 10px; width: 100%; max-width: 380px; }
+.lms-lock-input-group input { 
+  flex: 1; padding: 12px 16px; border: 3px solid var(--line); border-radius: 12px; 
+  font-family: var(--mono); font-weight: 700; font-size: 1rem; outline: none;
+}
+.lms-lock-input-group input:focus { border-color: var(--yellow); }
+.lms-lock-error { color: var(--red); font-family: var(--mono); font-size: 0.85rem; margin-top: 12px; display: none; }
+
+.lms-info {
+  background: #fff; padding: 28px; border: var(--stroke) solid var(--line); border-radius: 16px;
+}
+.lms-info h1 { font-size: 1.8rem; margin-bottom: 12px; color: var(--navy-deep); }
+.lms-info p { color: var(--ink-soft); font-size: 1.05rem; }
+.lms-info-badges { display: flex; gap: 10px; margin-bottom: 12px; }
+.lms-badge-free { font-family: var(--mono); font-size: 11px; background: var(--green); color: #fff; padding: 4px 10px; border-radius: 100px; font-weight: bold; border: 2px solid var(--line); }
+.lms-badge-locked { font-family: var(--mono); font-size: 11px; background: var(--paper-2); color: var(--ink-soft); padding: 4px 10px; border-radius: 100px; font-weight: bold; border: 2px solid var(--line); display: none; }
+
+.lms-playlist {
+  background: #fff; border: var(--stroke) solid var(--line); border-radius: 16px;
+  display: flex; flex-direction: column; overflow: hidden; box-shadow: 4px 4px 0 var(--line);
+}
+.lms-playlist-head {
+  padding: 20px; background: var(--yellow); border-bottom: var(--stroke) solid var(--line);
+}
+.lms-playlist-head h3 { font-size: 1.2rem; margin: 0; color: var(--ink); }
+.lms-list {
+  flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px;
+}
+.lms-list::-webkit-scrollbar { width: 8px; }
+.lms-list::-webkit-scrollbar-thumb { background: var(--ink-soft); border-radius: 4px; }
+
+.lms-item {
+  display: flex; align-items: center; gap: 14px; padding: 14px;
+  background: var(--paper-2); border: 2px solid transparent; border-radius: 12px;
+  cursor: pointer; transition: all 0.2s var(--ease); text-align: left;
+}
+.lms-item:hover { border-color: var(--line); background: #fff; transform: translateX(4px); }
+.lms-item.is-active { background: var(--navy-deep); color: #fff; border-color: var(--line); }
+.lms-item.is-active p { color: rgba(255,255,255,0.7); }
+.lms-item.is-active .lms-num { background: var(--yellow); color: var(--ink); }
+
+/* Locked Item Style */
+.lms-item.is-locked { opacity: 0.6; background: #fff; border-color: #E2E8F0; }
+.lms-item.is-locked:hover { opacity: 0.9; transform: translateX(2px); border-color: var(--line); }
+.lms-item.is-locked .lms-num { background: var(--paper-2); color: var(--ink-soft); font-size: 1rem; }
+
+.lms-num {
+  width: 36px; height: 36px; display: grid; place-items: center; flex-shrink: 0;
+  background: #fff; border: 2px solid var(--line); border-radius: 50%;
+  font-family: var(--display); font-weight: 900; font-size: 0.9rem;
+}
+.lms-item-text h4 { font-family: var(--body); font-weight: 800; font-size: 0.95rem; margin: 0 0 4px 0; }
+.lms-item-text p { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); margin: 0; }
+
+@media (max-width:1040px){
+  .courses__grid { grid-template-columns: 1fr; }
+  .lms-body { grid-template-columns: 1fr; overflow-y: auto; }
+  .lms-playlist { max-height: 500px; }
+}
+
+/* ============================================================
+   8. HOW IT WORKS, FINAL, FOOTER, CART...
+   ============================================================ */
+.how{ position:relative;color:var(--ink); background: linear-gradient(rgba(47,125,225,.06) 0 100%), repeating-linear-gradient(0deg, rgba(47,125,225,.28) 0 1px, transparent 1px 26px), repeating-linear-gradient(90deg, rgba(47,125,225,.28) 0 1px, transparent 1px 26px), repeating-linear-gradient(0deg, rgba(47,125,225,.55) 0 1.5px, transparent 1.5px 130px), repeating-linear-gradient(90deg, rgba(47,125,225,.55) 0 1.5px, transparent 1.5px 130px), #FBFCFE; border-block:var(--stroke) solid var(--line); }
 .how__head{text-align:center;display:grid;justify-items:center;gap:14px;margin-bottom:70px}
 .how__steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;position:relative}
-.how__steps::before{
-  content:"";position:absolute;top:26px;left:16%;right:16%;height:2px;
-  background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px);opacity:.35;
-}
+.how__steps::before{ content:"";position:absolute;top:26px;left:16%;right:16%;height:2px; background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px);opacity:.35; }
 .hstep{text-align:center;display:grid;justify-items:center;gap:12px;position:relative}
-.hstep__num{
-  width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
-  background:var(--yellow);border:var(--stroke) solid var(--line);
-  font-family:var(--display);font-weight:900;font-size:1.15rem;box-shadow:4px 4px 0 var(--line);
-}
+.hstep__num{ width:54px;height:54px;border-radius:50%;display:grid;place-items:center; background:var(--yellow);border:var(--stroke) solid var(--line); font-family:var(--display);font-weight:900;font-size:1.15rem;box-shadow:4px 4px 0 var(--line); }
 .hstep h3{font-size:1.5rem;text-transform:uppercase;margin-top:6px}
 .hstep p{color:var(--ink-soft);max-width:30ch;font-size:.96rem}
-.hstep__art{
-  margin-top:18px;width:100%;aspect-ratio:4/3;border:2.5px dashed rgba(18,24,31,.28);border-radius:14px;
-  background:rgba(255,255,255,.7);display:grid;place-items:center;
-}
+.hstep__art{ margin-top:18px;width:100%;aspect-ratio:4/3;border:2.5px dashed rgba(18,24,31,.28);border-radius:14px; background:rgba(255,255,255,.7);display:grid;place-items:center; }
 .hstep__art svg{width:118px;height:118px}
 .how__foot{margin-top:64px;display:grid;justify-items:center;gap:14px}
 .how__note{font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.05em;text-align:center}
 
-/* ============================================================
-   8. FINAL + FOOTER
-   ============================================================ */
 .final{background:var(--red);color:#fff;text-align:center;border-bottom:var(--stroke) solid var(--line)}
 .final h2{font-size:clamp(36px,6vw,76px);text-transform:uppercase}
 .final p{margin:18px auto 30px;max-width:48ch;color:rgba(255,255,255,.9)}
-
-.crew {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 38px;
-}
-
-.crew-member {
-  width: clamp(80px, 12vw, 120px);
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.crew-member:nth-child(odd) {
-  transform: rotate(-4deg);
-}
-
-.crew-member:nth-child(even) {
-  transform: rotate(4deg);
-}
-
-.crew-member:hover {
-  transform: rotate(0deg) scale(1.1);
-}
-
+.crew { display: flex; justify-content: center; align-items: center; gap: 18px; margin-bottom: 38px; }
+.crew-member { width: clamp(80px, 12vw, 120px); height: auto; object-fit: contain; transition: transform 0.3s ease; }
+.crew-member:nth-child(odd) { transform: rotate(-4deg); } .crew-member:nth-child(even) { transform: rotate(4deg); } .crew-member:hover { transform: rotate(0deg) scale(1.1); }
 .footer{background:var(--navy);color:rgba(255,255,255,.62);padding-block:56px 40px;font-size:.9rem}
 .footer__grid{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start}
 .footer .logo{color:#fff}
@@ -791,43 +488,20 @@ p{margin:0}
 .footer__col{display:grid;gap:10px}
 .footer__col h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin:0 0 4px}
 .footer__col a:hover{color:#fff}
-.footer__base{
-  margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);
-  display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;
-}
+.footer__base{ margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14); display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between; font-family:var(--mono);font-size:11px;letter-spacing:.06em; }
 
-/* ============================================================
-   9. CART DRAWER + CHECKOUT
-   ============================================================ */
-.backdrop{
-  position:fixed;inset:0;z-index:90;background:rgba(10,25,48,.6);
-  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
-}
+.backdrop{ position:fixed;inset:0;z-index:90;background:rgba(10,25,48,.6); opacity:0;pointer-events:none;transition:opacity .3s var(--ease); }
 .backdrop.is-open{opacity:1;pointer-events:auto}
-
-.drawer{
-  position:fixed;top:0;right:0;z-index:100;
-  width:min(440px,100%);height:100dvh;
-  background:#fff;border-left:var(--stroke) solid var(--line);
-  display:flex;flex-direction:column;
-  transform:translateX(102%);transition:transform .38s var(--ease);
-}
+.drawer{ position:fixed;top:0;right:0;z-index:100; width:min(440px,100%);height:100dvh; background:#fff;border-left:var(--stroke) solid var(--line); display:flex;flex-direction:column; transform:translateX(102%);transition:transform .38s var(--ease); }
 .drawer.is-open{transform:none}
-.drawer__head{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:20px 22px;border-bottom:var(--stroke) solid var(--line);
-}
+.drawer__head{ display:flex;align-items:center;justify-content:space-between;gap:12px; padding:20px 22px;border-bottom:var(--stroke) solid var(--line); }
 .drawer__head h2{font-size:1.4rem;text-transform:uppercase}
 .drawer__steps{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase}
 .drawer__close{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--line);display:grid;place-items:center}
 .drawer__close:hover{background:var(--yellow)}
 .drawer__body{flex:1;overflow-y:auto;padding:22px}
 .drawer__foot{padding:18px 22px 24px;border-top:var(--stroke) solid var(--line);background:var(--paper-2);display:grid;gap:12px}
-
-.pane{display:none}
-.pane.is-active{display:block}
-
+.pane{display:none} .pane.is-active{display:block}
 .line-item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px dashed #D5DAE2}
 .line-item__thumb{width:64px;height:64px;border:2.5px solid var(--line);border-radius:10px;display:grid;place-items:center;background:var(--c)}
 .line-item__thumb svg{width:34px;height:34px}
@@ -841,23 +515,14 @@ p{margin:0}
 .line-item__price{font-family:var(--display);font-weight:900}
 .line-item__kill{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:underline}
 .line-item__kill:hover{color:var(--red)}
-
 .empty{display:grid;justify-items:center;gap:14px;text-align:center;padding:52px 0;color:var(--ink-soft)}
 .empty svg{width:64px;height:64px;opacity:.35}
-
 .totals{display:grid;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em}
 .totals div{display:flex;justify-content:space-between}
-.totals .grand{
-  font-family:var(--display);font-size:1.35rem;font-weight:900;letter-spacing:0;
-  padding-top:8px;border-top:2px solid var(--line);
-}
-
+.totals .grand{ font-family:var(--display);font-size:1.35rem;font-weight:900;letter-spacing:0; padding-top:8px;border-top:2px solid var(--line); }
 .field{display:grid;gap:6px;margin-bottom:14px}
 .field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-.field input,.field select{
-  padding:13px 14px;border:2.5px solid var(--line);border-radius:12px;background:#fff;
-  font-family:var(--body);font-size:.95rem;
-}
+.field input,.field select{ padding:13px 14px;border:2.5px solid var(--line);border-radius:12px;background:#fff; font-family:var(--body);font-size:.95rem; }
 .field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,125,225,.18)}
 .field.is-bad input{border-color:var(--red);background:#FFF5F6}
 .field__err{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.06em;display:none}
@@ -865,140 +530,69 @@ p{margin:0}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pane h3{font-size:1.05rem;text-transform:uppercase;margin:4px 0 16px}
 .pane h3 + .note{margin-top:-8px}
-.note{
-  font-family:var(--mono);font-size:11px;color:var(--ink-soft);line-height:1.6;
-  background:var(--paper-2);border:1.5px dashed #C9D0DA;border-radius:10px;padding:10px 12px;margin-bottom:16px;
-}
+.note{ font-family:var(--mono);font-size:11px;color:var(--ink-soft);line-height:1.6; background:var(--paper-2);border:1.5px dashed #C9D0DA;border-radius:10px;padding:10px 12px;margin-bottom:16px; }
 .pay{display:grid;gap:10px;margin-bottom:16px}
-.pay label{
-  display:flex;align-items:center;gap:10px;padding:13px 14px;
-  border:2.5px solid var(--line);border-radius:12px;cursor:pointer;
-  font-family:var(--display);font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;
-}
+.pay label{ display:flex;align-items:center;gap:10px;padding:13px 14px; border:2.5px solid var(--line);border-radius:12px;cursor:pointer; font-family:var(--display);font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em; }
 .pay label:has(input:checked){background:var(--yellow)}
 .pay input{accent-color:var(--red);width:18px;height:18px}
-.back-link{
-  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ink-soft);text-decoration:underline;justify-self:center;
-}
+.back-link{ font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase; color:var(--ink-soft);text-decoration:underline;justify-self:center; }
 .back-link:hover{color:var(--ink)}
-
 .done{display:grid;justify-items:center;text-align:center;gap:12px;padding:36px 0}
-.done__tick{
-  width:78px;height:78px;border-radius:50%;background:var(--green);border:var(--stroke) solid var(--line);
-  display:grid;place-items:center;box-shadow:var(--shadow-hard);
-}
+.done__tick{ width:78px;height:78px;border-radius:50%;background:var(--green);border:var(--stroke) solid var(--line); display:grid;place-items:center;box-shadow:var(--shadow-hard); }
 .done h3{font-size:1.6rem}
 .done__code{font-family:var(--mono);font-size:12px;letter-spacing:.14em;background:var(--paper-2);border:1.5px dashed #C9D0DA;border-radius:8px;padding:8px 12px}
-
-.toast{
-  position:fixed;left:50%;bottom:26px;z-index:110;transform:translate(-50%,24px);
-  background:var(--ink);color:#fff;border-radius:100px;padding:12px 22px;
-  font-family:var(--mono);font-size:12px;letter-spacing:.08em;
-  opacity:0;pointer-events:none;transition:opacity .25s var(--ease), transform .25s var(--ease);
-}
+.toast{ position:fixed;left:50%;bottom:26px;z-index:110;transform:translate(-50%,24px); background:var(--ink);color:#fff;border-radius:100px;padding:12px 22px; font-family:var(--mono);font-size:12px;letter-spacing:.08em; opacity:0;pointer-events:none;transition:opacity .25s var(--ease), transform .25s var(--ease); }
 .toast.is-on{opacity:1;transform:translate(-50%,0)}
 
-/* ============================================================
-   10. REVEAL / REDUCED MOTION / RESPONSIVE
-   ============================================================ */
+/* REVEAL / RESPONSIVE */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
 .reveal.is-in{opacity:1;transform:none}
-
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none !important;transition:none !important}
-  .reveal{opacity:1;transform:none}
-  .scrolly__track{height:auto}
-  .scrolly__stage{position:static;height:auto;padding-block:80px;gap:40px}
-  .scrolly__hint{display:none}
-  .step{position:relative;opacity:1;transform:none;margin-bottom:26px}
-  .annot{opacity:1;transform:none}
+  html{scroll-behavior:auto} *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal{opacity:1;transform:none} .scrolly__track{height:auto} .scrolly__stage{position:static;height:auto;padding-block:80px;gap:40px}
+  .scrolly__hint{display:none} .step{position:relative;opacity:1;transform:none;margin-bottom:26px} .annot{opacity:1;transform:none}
   .drawer{transition:none}
 }
-
 @media (max-width:1040px){
-  .kits__grid{grid-template-columns:repeat(2,1fr);gap:34px 24px}
-  .hero__grid{grid-template-columns:1fr;gap:40px}
-  .hero__art{order:-1}
-  .hero__copy{max-width:none}
-  .bundle{grid-template-columns:1fr}
+  .kits__grid, .courses__grid{grid-template-columns:repeat(2,1fr);gap:34px 24px}
+  .hero__grid{grid-template-columns:1fr;gap:40px} .hero__art{order:-1} .hero__copy{max-width:none} .bundle{grid-template-columns:1fr}
 }
 @media (max-width:900px){
-  .nav__links{display:none}
-  .nav__toggle{display:grid}
-  .nav__inner{gap:14px}
-  .nav__actions{margin-left: auto}
-  .scrolly__stage{grid-template-columns:1fr;align-content:center;gap:0}
-  .scrolly__text{justify-self:center;text-align:center;order:2;max-width:520px}
-  .scrolly__text .eyebrow{justify-content:center}
-  .scene{order:1;height:46vh}
+  .nav__links{display:none} .nav__toggle{display:grid} .nav__inner{gap:14px} .nav__actions{margin-left:auto}
+  .scrolly__stage{grid-template-columns:1fr;align-content:center;gap:0} .scrolly__text{justify-self:center;text-align:center;order:2;max-width:520px}
+  .scrolly__text .eyebrow{justify-content:center} .scene{order:1;height:46vh}
   .rig{transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-30deg)) scale(calc(var(--sc,1) * .68))}
-  .annots{display:none}
-  .scrolly__steps{min-height:210px}
-  .step p{margin-inline:auto}
-  .rail{justify-items:center}
-  .how__steps{grid-template-columns:1fr;gap:52px}
-  .how__steps::before{display:none}
+  .annots{display:none} .scrolly__steps{min-height:210px} .step p{margin-inline:auto} .rail{justify-items:center}
+  .how__steps{grid-template-columns:1fr;gap:52px} .how__steps::before{display:none}
+  .courses__grid{grid-template-columns:1fr;}
 }
 @media (max-width:620px){
-  .kits__grid{grid-template-columns:1fr;gap:40px 0}
-  .btn{width:100%}
-  .hero__cta{flex-direction:column}
-  .scene{height:40vh}
-  .rig{transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-30deg)) scale(calc(var(--sc,1) * .54))}
+  .kits__grid{grid-template-columns:1fr;gap:40px 0} .btn{width:100%} .hero__cta{flex-direction:column}
+  .scene{height:40vh} .rig{transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-30deg)) scale(calc(var(--sc,1) * .54))}
   .drawer{width:100%}
 }
-
-/* ============================================================
-   RESPONSIVE DESIGN (موبايل)
-   ============================================================ */
-/* هذه القاعدة تجعل كل شيء داخل إطار الشاشة ولا يخرج عنها */
-html, body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* يمنع الزحف الجانبي */
-}
-
-/* استخدام نسبة مئوية بدلاً من القيم الثابتة للهواتف */
-@media (max-width: 768px) {
-  .hero-content, .container, .wall {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    padding: 10px !important;
-  }
-
-  /* تصغير أي عنصر قد يكون سبباً في التمدد */
-  img, svg, .hero__character {
-    max-width: 90% !important;
-    height: auto !important;
-  }
-}
-
+/* إضافات لتحسين مشغل الكورسات على الهواتف الصغيرة */
+  .lms-header { padding: 12px 16px; }
+  .lms-body { padding: 16px; gap: 16px; }
+  .lms-info { padding: 16px; }
+  .lms-close { width: 36px; height: 36px; font-size: 1rem; }
+  .lms-lock-overlay { padding: 20px; }
+  .lms-lock-icon { font-size: 2.2rem; }
 </style>
 </head>
 
 <body>
 
-<!-- <div class="topbar">
-  <span class="stars" aria-hidden="true">★★★★★</span>
-  <strong>Thousands of 5-star reviews</strong>
-  <span class="dot">•</span>Free shipping on your first box<span class="dot">•</span>Cancel anytime
-</div> -->
-
 <header class="nav" id="nav">
   <nav class="shell nav__inner" aria-label="Main">
      <a href="#top" class="logo">
-        <img src="C:\Users\malek\Desktop\finale_web_orbix\orbixlogo.svg">
+        <img src="C:\Users\malek\Desktop\finale_web_orbix\orbixlogo.svg" alt="Orbix Logo">
     </a>
     <div class="nav__links">
       <a href="#inside">What's inside</a>
       <a href="#kits">Kits</a>
+      <a href="#courses" style="color: var(--blue);">Academy 🎓</a>
       <a href="#how">How it works</a>
-      <a href="#kits">Gift</a>
     </div>
     <div class="nav__actions">
       <button class="btn btn--primary" data-add="box">Get started</button>
@@ -1015,13 +609,13 @@ html, body {
 
 <main id="top">
 
+<!-- 1. HERO SECTION -->
 <section class="hero">
   <div class="hero__fallback"></div>
   <video class="hero__video" autoplay muted loop playsinline preload="none" aria-hidden="true">
     <source src="assets/orbix-hero.mp4" type="video/mp4">
   </video>
   <div class="hero__overlay"></div>
-
   <div class="shell hero__grid">
     <div>
       <p class="eyebrow hero__eyebrow">Invention box · Ages 9–15</p>
@@ -1037,12 +631,9 @@ html, body {
         <li><b>50</b> cm tall</li><li><b>4</b> × 10 cm segments</li><li><b>60+</b> parts</li><li><b>12</b> guided builds</li><li><b>0</b> experience needed</li>
       </ul>
     </div>
-
     <div class="hero__art">
       <div class="hero__burst"></div>
-      
-      <img src="characters1.svg" alt="Orbix Character" class="hero__character">
-
+      <img src="C:\Users\malek\Desktop\finale_web_orbix\characters1.svg" alt="Orbix Character" class="hero__character">
       <div class="chat-bubble" id="orbixChat">
         <div class="chat-content" id="chatContent">
           <p>Hey there! I'm <b>Orbix</b> <br>I'm a giant box of engineering Ready to build?</p>
@@ -1059,33 +650,17 @@ html, body {
   </div>
 </section>
 
+<!-- 2. SCROLLYTELLING SECTION -->
 <section class="scrolly" id="inside" aria-label="What's inside the Orbix box">
   <div class="scrolly__track" id="track">
     <div class="scrolly__stage">
-
       <div class="scrolly__text">
         <p class="eyebrow" style="color:var(--yellow)">Unboxing · scroll to open</p>
         <div class="scrolly__steps" id="steps">
-          <article class="step is-active">
-            <span class="step__index">STEP 01 / 04</span>
-            <h3>One box lands</h3>
-            <p>Fifty centimetres tall, six kilos, handle cut into the side. A nine-year-old can carry it to the kitchen table without help.</p>
-          </article>
-          <article class="step">
-            <span class="step__index">STEP 02 / 04</span>
-            <h3>Flaps fold back</h3>
-            <p>Split the tape and all four flaps open at once. No shrink wrap, no tiny bags of doom — everything is sorted the way an engineer would sort it.</p>
-          </article>
-          <article class="step">
-            <span class="step__index">STEP 03 / 04</span>
-            <h3>Four segments,<br>four slots</h3>
-            <p>Four 10 cm segments, stacked. Same tray, four colours. Physics comes off the top, then Circuits, Sensors, Motors — each lifts straight out and goes to its own spot on the bench.</p>
-          </article>
-          <article class="step">
-            <span class="step__index">STEP 04 / 04s</span>
-            <h3>Then you hack it</h3>
-            <p>Finish the guided build, then combine segments into machines nobody sent you plans for. That's the part that sticks.</p>
-          </article>
+          <article class="step is-active"><span class="step__index">STEP 01 / 04</span><h3>One box lands</h3><p>Fifty centimetres tall, six kilos, handle cut into the side. A nine-year-old can carry it to the kitchen table without help.</p></article>
+          <article class="step"><span class="step__index">STEP 02 / 04</span><h3>Flaps fold back</h3><p>Split the tape and all four flaps open at once. No shrink wrap, no tiny bags of doom — everything is sorted the way an engineer would sort it.</p></article>
+          <article class="step"><span class="step__index">STEP 03 / 04</span><h3>Four segments,<br>four slots</h3><p>Four 10 cm segments, stacked. Same tray, four colours. Physics comes off the top, then Circuits, Sensors, Motors — each lifts straight out and goes to its own spot on the bench.</p></article>
+          <article class="step"><span class="step__index">STEP 04 / 04s</span><h3>Then you hack it</h3><p>Finish the guided build, then combine segments into machines nobody sent you plans for. That's the part that sticks.</p></article>
         </div>
         <ul class="rail" id="rail">
           <li class="rail__item is-on"><i></i> Box delivered</li>
@@ -1094,68 +669,31 @@ html, body {
           <li class="rail__item"><i></i> Build night</li>
         </ul>
       </div>
-
       <div class="scene" aria-hidden="true">
         <div class="rig" id="rig">
           <span class="rig__shadow"></span>
-
           <div class="box">
-            <div class="wall wall--back"></div>
-            <div class="wall wall--left"></div>
-            <div class="wall wall--right">
-              <img src="pacig.png" 
-                   alt="Orbix Box Cover" 
-                   style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
-            </div>
-            <div class="wall wall--front">
-              <img src="C:\Users\malek\Desktop\finale_web_orbix\orbix-02.png" 
-                   alt="Orbix Box Cover" 
-                   style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
-            </div>
-
-            <div class="wall--in in--front"></div>
-            <div class="wall--in in--back"></div>
-            <div class="wall--in in--left"></div>
-            <div class="wall--in in--right"></div>
-            <div class="floor"></div>
-            <div class="rim"></div>
-
-            <div class="gauge" id="gauge">
-              <span class="gauge__total">50 cm</span>
-              <span class="gauge__seg">10 cm</span>
-              <span class="gauge__seg">10 cm</span>
-              <span class="gauge__seg">10 cm</span>
-              <span class="gauge__seg">10 cm</span>
-            </div>
-
-            <div id="slots"></div>
-            <div id="trays"></div>
-
-            <div class="hinge hinge--left"><div class="flap" data-flap="left">
-              <div class="flap__face flap__face--up"></div><div class="flap__face flap__face--down"></div>
-            </div></div>
-            <div class="hinge hinge--right"><div class="flap" data-flap="right">
-              <div class="flap__face flap__face--up"></div><div class="flap__face flap__face--down"></div>
-            </div></div>
-            <div class="hinge hinge--back"><div class="flap" data-flap="back">
-              <div class="flap__face flap__face--up"><span class="flap__seam"></span></div>
-              <div class="flap__face flap__face--down"></div>
-            </div></div>
-            <div class="hinge hinge--front"><div class="flap" data-flap="front">
-              <div class="flap__face flap__face--up"><span class="flap__seam"></span></div>
-              <div class="flap__face flap__face--down"></div>
-            </div></div>
+            <div class="wall wall--back"></div><div class="wall wall--left"></div>
+            <div class="wall wall--right"><img src="C:\Users\malek\Desktop\orbix_domen\Screenshot 2026-07-15 102650.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 2px;"></div>
+            <div class="wall wall--front"><img src="C:\Users\malek\Desktop\finale_web_orbix\orbix-02.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 2px;"></div>
+            <div class="wall--in in--front"></div><div class="wall--in in--back"></div><div class="wall--in in--left"></div><div class="wall--in in--right"></div>
+            <div class="floor"></div><div class="rim"></div>
+            <div class="gauge" id="gauge"><span class="gauge__total">50 cm</span><span class="gauge__seg">10 cm</span><span class="gauge__seg">10 cm</span><span class="gauge__seg">10 cm</span><span class="gauge__seg">10 cm</span></div>
+            <div id="slots"></div><div id="trays"></div>
+            <div class="hinge hinge--left"><div class="flap" data-flap="left"><div class="flap__face flap__face--up"></div><div class="flap__face flap__face--down"></div></div></div>
+            <div class="hinge hinge--right"><div class="flap" data-flap="right"><div class="flap__face flap__face--up"></div><div class="flap__face flap__face--down"></div></div></div>
+            <div class="hinge hinge--back"><div class="flap" data-flap="back"><div class="flap__face flap__face--up"><span class="flap__seam"></span></div><div class="flap__face flap__face--down"></div></div></div>
+            <div class="hinge hinge--front"><div class="flap" data-flap="front"><div class="flap__face flap__face--up"><span class="flap__seam"></span></div><div class="flap__face flap__face--down"></div></div></div>
           </div>
         </div>
-
         <div class="annots" id="annots"></div>
         <p class="scrolly__hint" id="hint"><i></i> Keep scrolling</p>
       </div>
-
     </div>
   </div>
 </section>
 
+<!-- 3. KITS SECTION -->
 <section class="section kits" id="kits">
   <div class="shell">
     <header class="kits__head reveal">
@@ -1165,17 +703,13 @@ html, body {
       </div>
       <p class="lede">Every Orbix box ships with all four. Build them in order, or tear straight into the one that looks most dangerous.</p>
     </header>
-
     <div class="kits__grid" id="kitsGrid"></div>
-
     <div class="bundle reveal">
       <div>
         <p class="eyebrow" style="color:var(--yellow)">The whole thing</p>
         <h3 style="margin-top:12px">The Orbix<br>invention box</h3>
         <p>All four cartons, 60+ parts, 12 guided builds and the video library. One box, one build night a week, twelve weeks of it.</p>
-        <ul class="bundle__list">
-          <li>Physics</li><li>Circuits</li><li>Sensors</li><li>Motors</li><li>Free shipping</li>
-        </ul>
+        <ul class="bundle__list"><li>Physics</li><li>Circuits</li><li>Sensors</li><li>Motors</li><li>Free shipping</li></ul>
       </div>
       <div class="bundle__buy">
         <span class="bundle__price">$89<s>$116</s></span>
@@ -1186,6 +720,55 @@ html, body {
   </div>
 </section>
 
+<!-- 4. ACADEMY (COURSES) SECTION -->
+<section class="section courses-sec" id="courses">
+  <div class="shell">
+    <header class="how__head reveal">
+      <p class="eyebrow eyebrow--center" style="color:var(--blue)">Orbix Academy</p>
+      <h2 class="section-title">Learning Tracks</h2>
+      <p class="lede" style="text-align:center; margin: 0 auto;">Choose your path. Write code and build AI models, or dive deep into hardware and circuits.</p>
+    </header>
+
+    <div class="courses__grid">
+      <!-- Software Track -->
+      <article class="c-card reveal" onclick="window.openCourse('software')">
+        <div class="c-card__art" style="background: rgba(47, 125, 225, 0.1);">
+          <span class="c-card__badge" style="background: var(--blue); color: #fff;">26 Video Lessons</span>
+          <svg viewBox="0 0 120 120" fill="none" stroke="var(--navy)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M35 80L15 60L35 40M85 80L105 60L85 40M68 20L52 100"/>
+            <circle cx="60" cy="60" r="14" fill="#fff" stroke="var(--blue)"/>
+          </svg>
+        </div>
+        <div class="c-card__body">
+          <h3>Programming & AI</h3>
+          <p>A complete coding journey starting from logical thinking, mastering C++, all the way to Artificial Intelligence and OpenCV computer vision.</p>
+          <div class="c-card__btn">Explore Track</div>
+        </div>
+      </article>
+
+      <!-- Hardware Track -->
+      <article class="c-card reveal" onclick="window.openCourse('hardware')">
+        <div class="c-card__art" style="background: rgba(18, 133, 78, 0.1);">
+          <span class="c-card__badge" style="background: var(--yellow); color: var(--ink);">18 Video Lessons</span>
+          <svg viewBox="0 0 120 120" fill="none" stroke="var(--navy)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="25" y="40" width="70" height="40" rx="6" fill="#fff"/>
+            <path d="M40 40V30M60 40V30M80 40V30M40 90V80M60 90V80M80 90V80"/>
+            <circle cx="45" cy="60" r="4" fill="var(--green)" stroke="none"/>
+            <circle cx="75" cy="60" r="4" fill="var(--green)" stroke="none"/>
+            <path d="M15 60h10M95 60h10"/>
+          </svg>
+        </div>
+        <div class="c-card__body">
+          <h3>Hardware & Electronics</h3>
+          <p>A deep understanding of how machines work. Practical lessons covering electricity basics, sensors, and assembling advanced circuits step-by-step.</p>
+          <div class="c-card__btn">Explore Track</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. HOW IT WORKS -->
 <section class="section how" id="how">
   <div class="shell">
     <header class="how__head reveal">
@@ -1193,49 +776,11 @@ html, body {
       <h2 class="section-title">How it works</h2>
       <p class="lede" style="text-align:center">Subscribe once. A box shows up, you build it, and the next one is already harder.</p>
     </header>
-
     <div class="how__steps">
-      <article class="hstep reveal">
-        <span class="hstep__num">1</span>
-        <h3>Subscribe</h3>
-        <p>Pick a plan, and your first invention box ships the same week.</p>
-        <div class="hstep__art">
-          <svg viewBox="0 0 120 120" fill="none" stroke="#12181F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 44l38-18 38 18-38 18-38-18z" fill="#FFC629"/>
-            <path d="M22 44v34l38 18V62" fill="#fff"/><path d="M98 44v34l-38 18V62" fill="#F4F6FA"/>
-            <path d="M60 26v36" stroke-dasharray="4 5"/><circle cx="60" cy="44" r="5" fill="#E8434F"/>
-          </svg>
-        </div>
-      </article>
-      <article class="hstep reveal">
-        <span class="hstep__num">2</span>
-        <h3>Create, build, hack</h3>
-        <p>Follow the build video, then break the rules and rewire it your way.</p>
-        <div class="hstep__art">
-          <svg viewBox="0 0 120 120" fill="none" stroke="#12181F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="26" y="46" width="68" height="42" rx="8" fill="#2F7DE1"/>
-            <circle cx="60" cy="67" r="11" fill="#fff"/><circle cx="60" cy="67" r="4" fill="#E8434F"/>
-            <path d="M26 60H14M106 60H94M40 46V32M80 46V32"/>
-            <circle cx="40" cy="28" r="5" fill="#FFC629"/><circle cx="80" cy="28" r="5" fill="#12854E"/>
-            <path d="M36 88v10M84 88v10"/>
-          </svg>
-        </div>
-      </article>
-      <article class="hstep reveal">
-        <span class="hstep__num">3</span>
-        <h3>Grow</h3>
-        <p>Each box adds a skill the last one set up. Twelve months in, they're designing from scratch.</p>
-        <div class="hstep__art">
-          <svg viewBox="0 0 120 120" fill="none" stroke="#12181F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="20" y="34" width="80" height="52" rx="6" fill="#fff"/>
-            <rect x="20" y="34" width="80" height="12" rx="6" fill="#0F2545"/>
-            <path d="M14 96h92"/><path d="M34 76l14-16 12 10 18-24" stroke="#E8434F" stroke-width="4"/>
-            <circle cx="78" cy="46" r="4" fill="#FFC629"/>
-          </svg>
-        </div>
-      </article>
+      <article class="hstep reveal"><span class="hstep__num">1</span><h3>Subscribe</h3><p>Pick a plan, and your first invention box ships the same week.</p><div class="hstep__art"><svg viewBox="0 0 120 120" fill="none" stroke="#12181F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 44l38-18 38 18-38 18-38-18z" fill="#FFC629"/><path d="M22 44v34l38 18V62" fill="#fff"/><path d="M98 44v34l-38 18V62" fill="#F4F6FA"/><path d="M60 26v36" stroke-dasharray="4 5"/><circle cx="60" cy="44" r="5" fill="#E8434F"/></svg></div></article>
+      <article class="hstep reveal"><span class="hstep__num">2</span><h3>Create, build, hack</h3><p>Follow the build video, then break the rules and rewire it your way.</p><div class="hstep__art"><svg viewBox="0 0 120 120" fill="none" stroke="#12181F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="26" y="46" width="68" height="42" rx="8" fill="#2F7DE1"/><circle cx="60" cy="67" r="11" fill="#fff"/><circle cx="60" cy="67" r="4" fill="#E8434F"/><path d="M26 60H14M106 60H94M40 46V32M80 46V32"/><circle cx="40" cy="28" r="5" fill="#FFC629"/><circle cx="80" cy="28" r="5" fill="#12854E"/><path d="M36 88v10M84 88v10"/></svg></div></article>
+      <article class="hstep reveal"><span class="hstep__num">3</span><h3>Grow</h3><p>Each box adds a skill the last one set up. Twelve months in, they're designing from scratch.</p><div class="hstep__art"><svg viewBox="0 0 120 120" fill="none" stroke="#12181F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="20" y="34" width="80" height="52" rx="6" fill="#fff"/><rect x="20" y="34" width="80" height="12" rx="6" fill="#0F2545"/><path d="M14 96h92"/><path d="M34 76l14-16 12 10 18-24" stroke="#E8434F" stroke-width="4"/><circle cx="78" cy="46" r="4" fill="#FFC629"/></svg></div></article>
     </div>
-
     <div class="how__foot reveal">
       <button class="btn btn--primary" data-add="box">Get started</button>
       <p class="how__note">Ships worldwide · Cancel anytime · Grown-up supervision recommended, mostly for their own good</p>
@@ -1243,13 +788,14 @@ html, body {
   </div>
 </section>
 
+<!-- 6. FINAL & FOOTER -->
 <section class="section final">
   <div class="crew" aria-hidden="true">
-    <img src="characters1.svg" alt="Character 1" class="crew-member">
-    <img src="characters-03.svg" alt="Character 2" class="crew-member">
-    <img src="characters-05.svg" alt="Character 3" class="crew-member">
-    <img src="characters-04.svg" alt="Character 4" class="crew-member">
-    <img src="characters-02.svg" alt="Character 5" class="crew-member">
+    <img src="C:\Users\malek\Desktop\finale_web_orbix\characters1.svg" class="crew-member">
+    <img src="C:\Users\malek\Desktop\finale_web_orbix\characters-03.svg" class="crew-member">
+    <img src="C:\Users\malek\Desktop\finale_web_orbix\characters-05.svg" class="crew-member">
+    <img src="C:\Users\malek\Desktop\finale_web_orbix\characters-04.svg" class="crew-member">
+    <img src="C:\Users\malek\Desktop\finale_web_orbix\characters-02.svg" class="crew-member">
   </div>
   <h2>Your kid can<br>build this</h2>
   <p>Start with the invention box. Four cartons, twelve builds, and a workbench that stays messy for a very good reason.</p>
@@ -1260,14 +806,12 @@ html, body {
   <div class="shell">
     <div class="footer__grid">
       <div>
-        <a href="#top" class="logo">
-          <img src="orbixlogo.svg" alt="Orbix Logo" style="height: 45px; width: auto; object-fit: contain;">
-        </a>
+        <a href="#top" class="logo"><img src="C:\Users\malek\Desktop\orbix_domen\orbixlogo.svg" style="height: 45px; width: auto; object-fit: contain;"></a>
         <p style="margin-top:12px;max-width:30ch">Hands-on engineering kits for people who'd rather take it apart.</p>
       </div>
       <div class="footer__cols">
         <div class="footer__col"><h4>Shop</h4><a href="#kits">Invention box</a><a href="#kits">Modules</a><a href="#kits">Gift a box</a></div>
-        <div class="footer__col"><h4>Learn</h4><a href="#how">How it works</a><a href="#inside">What's inside</a><a href="#">Build videos</a></div>
+        <div class="footer__col"><h4>Learn</h4><a href="#how">How it works</a><a href="#courses">Academy</a><a href="#inside">What's inside</a></div>
         <div class="footer__col"><h4>Help</h4><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div>
       </div>
     </div>
@@ -1277,249 +821,295 @@ html, body {
     </div>
   </div>
 </footer>
-
 </main>
 
+<!-- ==========================================
+     DRAWER (CART) & BACKDROP
+     ========================================== -->
 <div class="backdrop" id="backdrop"></div>
-
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true">
   <header class="drawer__head">
-    <div>
-      <h2 id="drawerTitle">Your cart</h2>
-      <span class="drawer__steps" id="drawerStep">Step 1 of 3 · Cart</span>
-    </div>
-    <button class="drawer__close" id="drawerClose" aria-label="Close cart">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
+    <div><h2 id="drawerTitle">Your cart</h2><span class="drawer__steps" id="drawerStep">Step 1 of 3 · Cart</span></div>
+    <button class="drawer__close" id="drawerClose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </header>
   <div class="drawer__body">
-    <section class="pane is-active" data-pane="cart">
-      <div id="cartList"></div>
-    </section>
+    <section class="pane is-active" data-pane="cart"><div id="cartList"></div></section>
     <section class="pane" data-pane="details">
       <h3>Where's it going?</h3>
-      <div class="field" data-req><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name"><span class="field__err">Add a name for the delivery label</span></div>
-      <div class="field" data-req><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"><span class="field__err">Add an email so we can send tracking</span></div>
-      <div class="field" data-req><label for="f-addr">Address</label><input id="f-addr" name="address" autocomplete="street-address"><span class="field__err">Add a street address</span></div>
+      <div class="field" data-req><label>Full name</label><input id="f-name" autocomplete="name"><span class="field__err">Required</span></div>
+      <div class="field" data-req><label>Email</label><input id="f-email" type="email" autocomplete="email"><span class="field__err">Required</span></div>
+      <div class="field" data-req><label>Address</label><input id="f-addr" autocomplete="street-address"><span class="field__err">Required</span></div>
       <div class="row">
-        <div class="field" data-req><label for="f-city">City</label><input id="f-city" name="city" autocomplete="address-level2"><span class="field__err">Required</span></div>
-        <div class="field" data-req><label for="f-zip">Postcode</label><input id="f-zip" name="zip" autocomplete="postal-code"><span class="field__err">Required</span></div>
+        <div class="field" data-req><label>City</label><input id="f-city"><span class="field__err">Required</span></div>
+        <div class="field" data-req><label>Postcode</label><input id="f-zip"><span class="field__err">Required</span></div>
       </div>
       <div class="field">
-        <label for="f-country">Country</label>
-        <select id="f-country" name="country">
-          <option>Jordan</option><option>United States</option><option>United Kingdom</option>
-          <option>United Arab Emirates</option><option>Saudi Arabia</option><option>Germany</option>
-        </select>
+        <label>Country</label>
+        <select id="f-country"><option>Jordan</option><option>United States</option><option>United Kingdom</option></select>
       </div>
     </section>
     <section class="pane" data-pane="pay">
       <h3>Payment</h3>
-      <p class="note">Demo checkout. Mount your provider's hosted field (Stripe Elements, Paddle, HyperPay) inside <code>#psp-mount</code>.</p>
-      <div class="pay">
-        <label><input type="radio" name="method" value="card" checked> Card</label>
-        <label><input type="radio" name="method" value="cod"> Cash on delivery</label>
-      </div>
+      <div class="pay"><label><input type="radio" name="method" value="card" checked> Card</label><label><input type="radio" name="method" value="cod"> Cash on delivery</label></div>
       <div id="psp-mount" class="note" style="text-align:center;padding:26px 12px">Secure payment field mounts here</div>
       <div class="totals" id="paySummary"></div>
     </section>
     <section class="pane" data-pane="done">
       <div class="done">
-        <span class="done__tick">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
-        </span>
+        <span class="done__tick"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
         <h3>Order placed</h3>
-        <p style="color:var(--ink-soft);max-width:32ch">Your invention box ships in 2 working days. Tracking lands in your inbox the moment it leaves the workshop.</p>
+        <p style="color:var(--ink-soft);max-width:32ch">Your box ships soon.</p>
         <span class="done__code" id="orderCode">ORD-000000</span>
       </div>
     </section>
   </div>
   <footer class="drawer__foot" id="drawerFoot"></footer>
 </aside>
-
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<!-- ==========================================
+     LMS PLAYER MODAL (ACADEMY)
+     ========================================== -->
+<div class="lms-modal" id="lmsModal">
+  <header class="lms-header">
+    <h2 id="lmsTrackTitle">Track Title</h2>
+    <button class="lms-close" onclick="window.closeCourse()">X</button>
+  </header>
+  <div class="lms-body">
+    <div class="lms-video-area">
+      <div class="lms-player-wrap">
+        <video id="lmsVideo" controls>Your browser does not support the video tag.</video>
+        
+        <!-- Lock Overlay Screen (Hidden by default) -->
+        <div class="lms-lock-overlay" id="lmsLockOverlay">
+          <div class="lms-lock-icon">🔒</div>
+          <h3>Unlock Full Access</h3>
+          <p>Enter the secret passcode found on the card inside your Orbix Box to unlock the rest of the course.</p>
+          <div class="lms-lock-input-group">
+            <input type="text" id="lmsPasscode" placeholder="e.g. ORBIX-VIP" autocomplete="off">
+            <button class="btn btn--yellow" onclick="window.verifyPasscode()">Unlock</button>
+          </div>
+          <span class="lms-lock-error" id="lmsLockError">Invalid passcode. Try again.</span>
+        </div>
+      </div>
+
+      <div class="lms-info">
+        <div class="lms-info-badges">
+          <span class="lms-badge-free" id="badgeFree">FREE PREVIEW</span>
+          <span class="lms-badge-locked" id="badgeLocked">LOCKED LESSON</span>
+        </div>
+        <h1 id="lmsVidTitle">Video Title</h1>
+        <p id="lmsVidDesc">Video Description</p>
+      </div>
+    </div>
+    
+    <aside class="lms-playlist">
+      <div class="lms-playlist-head"><h3>Course Content</h3></div>
+      <div class="lms-list" id="lmsList"></div>
+    </aside>
+  </div>
+</div>
+
 <script>
+/* ==========================================================
+   GLOBAL COURSE LMS LOGIC & LOCK SYSTEM
+   ========================================================== */
+const COURSES_DATA = {
+  software: {
+    title: "Programming & AI (C++ & OpenCV)",
+    videos: Array.from({length: 26}, (_, i) => ({
+      title: i === 0 ? "1. Intro to Algorithmic Thinking" :
+             i === 12 ? "13. Data Structures in C++" :
+             i === 20 ? "21. Building Your First AI Model" :
+             i === 25 ? "26. Image Processing with OpenCV" :
+             `${i+1}. Coding Practice & Application ${i+1}`,
+      desc: "In this lesson, we dive into new programming concepts that allow you to fully control the system and analyze data deeper.",
+      vid_src: "video_placeholder.mp4",
+      duration: "08:30"
+    }))
+  },
+  hardware: {
+    title: "Hardware & Electronics",
+    videos: Array.from({length: 18}, (_, i) => ({
+      title: i === 0 ? "1. Principles of Electricity & Voltage" :
+             i === 8 ? "9. Wiring Sensors & Resistors" :
+             i === 17 ? "18. Final Robot Assembly Project" :
+             `${i+1}. Hardware & Circuit Wiring ${i+1}`,
+      desc: "Step-by-step, we will learn how to safely wire electronic components and understand the signals sent by sensors.",
+      vid_src: "video_placeholder.mp4",
+      duration: "12:15"
+    }))
+  }
+};
+
+let courseUnlocked = false; // Global lock state
+let currentTrack = null;
+
+window.openCourse = function(trackKey) {
+  currentTrack = COURSES_DATA[trackKey];
+  if (!currentTrack) return;
+  document.getElementById('lmsTrackTitle').textContent = currentTrack.title;
+  
+  window.renderPlaylist();
+  window.loadVideo(0); // Load first video initially
+  
+  document.getElementById('lmsModal').classList.add('is-open');
+  document.body.classList.add('is-locked');
+};
+
+window.renderPlaylist = function() {
+  const lmsList = document.getElementById('lmsList');
+  lmsList.innerHTML = '';
+  
+  currentTrack.videos.forEach((vid, index) => {
+    const isFree = index < 3;
+    const isLocked = !isFree && !courseUnlocked;
+    
+    const btn = document.createElement('button');
+    btn.className = `lms-item ${isLocked ? 'is-locked' : ''}`;
+    btn.id = `btn-lesson-${index}`;
+    
+    // If locked, show lock emoji instead of number
+    const numDisplay = isLocked ? '🔒' : (index + 1);
+    
+    btn.innerHTML = `<span class="lms-num">${numDisplay}</span><div class="lms-item-text"><h4>${vid.title}</h4><p>${vid.duration} min</p></div>`;
+    
+    btn.onclick = () => {
+      if (isLocked) {
+        window.showLockOverlay(vid.title, vid.desc, index);
+      } else {
+        window.loadVideo(index);
+      }
+    };
+    lmsList.appendChild(btn);
+  });
+};
+
+window.loadVideo = function(index) {
+  // Hide overlay if it was open
+  document.getElementById('lmsLockOverlay').classList.remove('is-active');
+  document.getElementById('lmsLockError').style.display = 'none';
+
+  const vid = currentTrack.videos[index];
+  const isFree = index < 3;
+  
+  // Manage Badges
+  document.getElementById('badgeFree').style.display = isFree ? 'block' : 'none';
+  document.getElementById('badgeLocked').style.display = 'none'; // Because we are playing it
+
+  // Update Active State on Playlist
+  document.querySelectorAll('.lms-item').forEach(b => b.classList.remove('is-active'));
+  const currentBtn = document.getElementById(`btn-lesson-${index}`);
+  if(currentBtn) currentBtn.classList.add('is-active');
+  
+  // Set Info
+  document.getElementById('lmsVidTitle').textContent = vid.title;
+  document.getElementById('lmsVidDesc').textContent = vid.desc;
+  
+  // Play Video Logic (Placeholder)
+  // document.getElementById('lmsVideo').src = vid.vid_src;
+};
+
+window.showLockOverlay = function(title, desc, index) {
+  document.getElementById('lmsVideo').pause();
+  document.getElementById('lmsLockOverlay').classList.add('is-active');
+  
+  // Manage Badges
+  document.getElementById('badgeFree').style.display = 'none';
+  document.getElementById('badgeLocked').style.display = 'block';
+
+  // Update Active State
+  document.querySelectorAll('.lms-item').forEach(b => b.classList.remove('is-active'));
+  const currentBtn = document.getElementById(`btn-lesson-${index}`);
+  if(currentBtn) currentBtn.classList.add('is-active');
+
+  // Set Info to show what they are missing
+  document.getElementById('lmsVidTitle').textContent = title;
+  document.getElementById('lmsVidDesc').textContent = desc;
+};
+
+window.verifyPasscode = function() {
+  const input = document.getElementById('lmsPasscode').value.trim();
+  const errorMsg = document.getElementById('lmsLockError');
+  
+  // Dummy Passcode: ORBIX-VIP
+  if (input.toUpperCase() === 'ORBIX-VIP') {
+    courseUnlocked = true;
+    errorMsg.style.display = 'none';
+    document.getElementById('lmsLockOverlay').classList.remove('is-active');
+    
+    // Re-render playlist to remove lock icons
+    window.renderPlaylist();
+    
+    // Optionally, alert success or automatically play the video they tried to click
+    alert("Passcode Accepted! Full course unlocked.");
+  } else {
+    errorMsg.style.display = 'block';
+  }
+};
+
+window.closeCourse = function() {
+  document.getElementById('lmsVideo').pause();
+  document.getElementById('lmsModal').classList.remove('is-open');
+  document.body.classList.remove('is-locked');
+};
+
+/* ==========================================================
+   MAIN JS (CART, CHATBOT, SCROLLY)
+   ========================================================== */
 (function () {
   "use strict";
 
-  /* ==========================================================
-     CONFIG
-     ========================================================== */
- const MODULES = [
-    {
-      id:"physics", name:"Physics", code:"M-01", color:"#FFC629", age:"Ages 9–15", price:29,
-      desc:"Catapults, gear trains and a centre of mass you can feel. Levers before equations.",
-      concept:"Force you can feel — levers, gears, and the exact moment a catapult tips.",
-      parts:"18 parts", builds:"3 builds",
-      tx: -38, ty: -45, fx:-1, fz:-1, pos:"tl", /* الفيزياء (أصفر) -> أعلى اليسار */
-      icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 76h76"/><path d="M50 76V30"/><circle cx="50" cy="24" r="10" fill="#fff"/><path d="M50 40l26 18"/><circle cx="80" cy="62" r="8" fill="#E8434F"/><path d="M20 76l14-16" stroke-dasharray="3 6"/></svg>`
-    },
-    {
-      id:"circuits", name:"Circuits", code:"M-02", color:"#E8434F", age:"Ages 10–15", price:29,
-      desc:"Real breadboard, real solder-free wiring. Build it, short it, work out why.",
-      concept:"Electricity you can see — breadboard it, short it, then work out why.",
-      parts:"22 parts", builds:"3 builds",
-      tx: 38, ty: -45, fx:1,  fz:-1, pos:"tr", /* الدوائر (أحمر) -> أعلى اليمين */
-      icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="30" width="68" height="40" rx="6" fill="#fff"/><path d="M16 42h-8M16 58h-8M84 42h8M84 58h8"/><path d="M30 50h12l4-8 8 16 4-8h12" stroke="#E8434F"/><circle cx="30" cy="50" r="3.5" fill="#12181F"/><circle cx="70" cy="50" r="3.5" fill="#12181F"/></svg>`
-    },
-    {
-      id:"sensors", name:"Sensors", code:"M-03", color:"#2F7DE1", age:"Ages 11–15", price:29,
-      desc:"Light, distance, tilt. Teach a machine to notice things, then trick it on purpose.",
-      concept:"Machines that notice — light, distance and tilt, then how to fool them.",
-      parts:"14 parts", builds:"3 builds",
-      tx: -38, ty: -15, fx:-1, fz:1,  pos:"bl", /* الحساسات (أزرق) -> أسفل اليسار */
-      icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="26" y="44" width="48" height="34" rx="6" fill="#fff"/><circle cx="50" cy="61" r="9" fill="#2F7DE1"/><circle cx="50" cy="61" r="3" fill="#fff"/><path d="M30 30a28 28 0 0140 0" stroke-dasharray="4 7"/><path d="M38 20a44 44 0 0124 0" stroke-dasharray="4 7"/></svg>`
-    },
-    {
-      id:"motors", name:"Motors", code:"M-04", color:"#12854E", age:"Ages 9–15", price:29,
-      desc:"Gearboxes, drivers and torque you can stall with one finger. Then make it move.",
-      concept:"Make it move — gearboxes, drivers, and torque you can stall with one finger.",
-      parts:"16 parts", builds:"3 builds",
-      tx: 38, ty: -15, fx:1,  fz:1,  pos:"br", /* المحركات (أخضر) -> أسفل اليمين */
-      icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="46" cy="50" r="22" fill="#fff"/><path d="M46 22v-8M46 86v-8M18 50h-8M82 50h8M26 30l-6-6M66 70l6 6M66 30l6-6M26 70l-6 6"/><circle cx="46" cy="50" r="8" fill="#12854E"/><path d="M68 50h20"/></svg>`
-    }
+  const MODULES = [
+    { id:"physics", name:"Physics", code:"M-01", color:"#FFC629", age:"Ages 9–15", price:29, desc:"Catapults, gear trains and a centre of mass you can feel. Levers before equations.", concept:"Force you can feel — levers, gears, and the exact moment a catapult tips.", parts:"18 parts", builds:"3 builds", tx: -38, ty: -45, fx:-1, fz:-1, pos:"tl", icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 76h76"/><path d="M50 76V30"/><circle cx="50" cy="24" r="10" fill="#fff"/><path d="M50 40l26 18"/><circle cx="80" cy="62" r="8" fill="#E8434F"/><path d="M20 76l14-16" stroke-dasharray="3 6"/></svg>` },
+    { id:"circuits", name:"Circuits", code:"M-02", color:"#E8434F", age:"Ages 10–15", price:29, desc:"Real breadboard, real solder-free wiring. Build it, short it, work out why.", concept:"Electricity you can see — breadboard it, short it, then work out why.", parts:"22 parts", builds:"3 builds", tx: 38, ty: -45, fx:1,  fz:-1, pos:"tr", icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="30" width="68" height="40" rx="6" fill="#fff"/><path d="M16 42h-8M16 58h-8M84 42h8M84 58h8"/><path d="M30 50h12l4-8 8 16 4-8h12" stroke="#E8434F"/><circle cx="30" cy="50" r="3.5" fill="#12181F"/><circle cx="70" cy="50" r="3.5" fill="#12181F"/></svg>` },
+    { id:"sensors", name:"Sensors", code:"M-03", color:"#2F7DE1", age:"Ages 11–15", price:29, desc:"Light, distance, tilt. Teach a machine to notice things, then trick it on purpose.", concept:"Machines that notice — light, distance and tilt, then how to fool them.", parts:"14 parts", builds:"3 builds", tx: -38, ty: -15, fx:-1, fz:1,  pos:"bl", icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="26" y="44" width="48" height="34" rx="6" fill="#fff"/><circle cx="50" cy="61" r="9" fill="#2F7DE1"/><circle cx="50" cy="61" r="3" fill="#fff"/><path d="M30 30a28 28 0 0140 0" stroke-dasharray="4 7"/><path d="M38 20a44 44 0 0124 0" stroke-dasharray="4 7"/></svg>` },
+    { id:"motors", name:"Motors", code:"M-04", color:"#12854E", age:"Ages 9–15", price:29, desc:"Gearboxes, drivers and torque you can stall with one finger. Then make it move.", concept:"Make it move — gearboxes, drivers, and torque you can stall with one finger.", parts:"16 parts", builds:"3 builds", tx: 38, ty: -15, fx:1,  fz:1,  pos:"br", icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="46" cy="50" r="22" fill="#fff"/><path d="M46 22v-8M46 86v-8M18 50h-8M82 50h8M26 30l-6-6M66 70l6 6M66 30l6-6M26 70l-6 6"/><circle cx="46" cy="50" r="8" fill="#12854E"/><path d="M68 50h20"/></svg>` }
   ];
 
-  const BOX = {
-    id:"box", name:"Orbix Invention Box", code:"BOX-01", color:"#FFFFFF", price:89,
-    icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="5" stroke-linejoin="round">
-      <path d="M14 34l36-16 36 16-36 16-36-16z" fill="#FCFBF8"/>
-      <path d="M14 34v36l36 16V50" fill="#EFEBE3"/><path d="M86 34v36L50 86V50" fill="#DCD6CA"/>
-      <path d="M50 18v32" stroke-dasharray="4 6"/></svg>`
-  };
-  const CATALOG = {};
-  [BOX, ...MODULES].forEach(p => CATALOG[p.id] = p);
-
-  const SHIPPING_FREE_OVER = 60;
-  const SHIPPING_FLAT = 6;
-
-  const CM     = 5;
-  const SEG_H  = 10;
-  const FLOOR  = 24.4;
-  const LIFT_Y = -47;
-  const OUT    = 38; // مضبوطة لمنع ابتعاد البكسات كثيراً
-
+  const BOX = { id:"box", name:"Orbix Invention Box", code:"BOX-01", color:"#FFFFFF", price:89, icon:`<svg viewBox="0 0 100 100" fill="none" stroke="#12181F" stroke-width="5" stroke-linejoin="round"><path d="M14 34l36-16 36 16-36 16-36-16z" fill="#FCFBF8"/><path d="M14 34v36l36 16V50" fill="#EFEBE3"/><path d="M86 34v36L50 86V50" fill="#DCD6CA"/><path d="M50 18v32" stroke-dasharray="4 6"/></svg>` };
+  const CATALOG = {}; [BOX, ...MODULES].forEach(p => CATALOG[p.id] = p);
+  const SHIPPING_FREE_OVER = 60; const SHIPPING_FLAT = 6;
+  const CM = 5; const SEG_H = 10; const FLOOR = 24.4; const OUT = 38;
   const packY = i => FLOOR - SEG_H / 2 - (3 - i) * SEG_H;
 
-  const $  = (s, r = document) => r.querySelector(s);
+  const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const range = (v, i0, i1, o0, o1) => o0 + (o1 - o0) * clamp((v - i0) / (i1 - i0), 0, 1);
   const money = n => "$" + n.toFixed(2);
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ==========================================================
-     CHATBOT LOGIC
-     ========================================================== */
+  /* CHATBOT */
   function initChatbot() {
-    const content = document.getElementById("chatContent");
-    const input = document.getElementById("chatInput");
-    const sendBtn = document.getElementById("chatSend");
-    const inputArea = document.getElementById("chatInputArea");
-    
+    const content = $("#chatContent"), input = $("#chatInput"), sendBtn = $("#chatSend"), inputArea = $("#chatInputArea");
     if(!content || !input) return;
-
-    let step = 0;
-    const kidData = { name: "", age: "", passion: "" };
-
+    let step = 0; const kidData = { name: "", age: "", passion: "" };
     const updateChat = () => {
-      const val = input.value.trim();
-      if (!val && step !== 0) return;
-
+      const val = input.value.trim(); if (!val && step !== 0) return;
       switch(step) {
-        case 0:
-          kidData.name = val || "يا صديقي";
-          content.innerHTML = `<p>أهلاً بك يا <b>${kidData.name}</b>! اسم رائع. كم عمرك يا بطل؟</p>`;
-          input.value = "";
-          input.type = "number";
-          input.placeholder = "أدخل عمرك...";
-          step = 1;
-          break;
-
-        case 1:
-          kidData.age = val;
-          content.innerHTML = `<p><b>${kidData.age}</b> سنة! عمر ممتاز للابتكار. ما هو أكثر شيء تحب صنعه؟</p>`;
-          input.value = "";
-          input.type = "text";
-          input.placeholder = "مثلاً: الروبوتات، الفضاء...";
-          step = 2;
-          break;
-
-        case 2:
-          kidData.passion = val;
-          content.innerHTML = `
-            <p>واو! ${kidData.name}، وأنت في عمر ${kidData.age} مهتم بـ <b>${kidData.passion}</b>؟</p>
-            <p>هذا مذهل! Orbix سيحول شغفك بـ <b>${kidData.passion}</b> إلى اختراعات حقيقية.</p>
-          `;
-          inputArea.style.display = "none";
-          const btn = document.createElement("button");
-          btn.className = "btn btn--primary";
-          btn.style.marginTop = "10px";
-          btn.textContent = "لنبدأ الرحلة!";
-          btn.onclick = () => document.getElementById("inside").scrollIntoView({ behavior: "smooth" });
-          content.appendChild(btn);
-          step = 3;
-          break;
+        case 0: kidData.name = val || "Buddy"; content.innerHTML = `<p>Hey <b>${kidData.name}</b>! Great name. How old are you?</p>`; input.value = ""; input.type = "number"; input.placeholder = "Your age..."; step = 1; break;
+        case 1: kidData.age = val; content.innerHTML = `<p><b>${kidData.age}</b>? Perfect age to start building. What do you love making the most?</p>`; input.value = ""; input.type = "text"; input.placeholder = "e.g. Robots, Space..."; step = 2; break;
+        case 2: kidData.passion = val; content.innerHTML = `<p>Wow! Orbix is going to turn your passion for <b>${kidData.passion}</b> into real inventions.</p>`; inputArea.style.display = "none"; const btn = document.createElement("button"); btn.className = "btn btn--primary"; btn.style.marginTop = "10px"; btn.textContent = "Let's Start!"; btn.onclick = () => $("#inside").scrollIntoView({ behavior: "smooth" }); content.appendChild(btn); step = 3; break;
       }
     };
-
-    sendBtn.onclick = updateChat;
-    input.onkeypress = (e) => { if (e.key === "Enter") updateChat(); };
+    sendBtn.onclick = updateChat; input.onkeypress = (e) => { if (e.key === "Enter") updateChat(); };
   }
 
-  /* ==========================================================
-     NAV
-     ========================================================== */
+  /* NAV */
   function initNav() {
     const nav = $("#nav");
     const onScroll = () => nav.classList.toggle("is-stuck", window.scrollY > 8);
-    window.addEventListener("scroll", onScroll, { passive:true });
-    onScroll();
+    window.addEventListener("scroll", onScroll, { passive:true }); onScroll();
     $("#navToggle").addEventListener("click", () => $("#kits").scrollIntoView({ behavior:"smooth" }));
   }
 
-  /* ==========================================================
-     SCENE
-     ========================================================== */
-  const ARROW = `<svg class="annot__arrow" viewBox="0 0 90 60" fill="none" stroke="currentColor"
-      stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M4 10c26 2 48 14 66 36" stroke-dasharray="0 0"/>
-      <path d="M58 48l14 2 -3-14"/>
-    </svg>`;
-
+  /* SCROLLY SCENE */
+  const ARROW = `<svg class="annot__arrow" viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10c26 2 48 14 66 36" stroke-dasharray="0 0"/><path d="M58 48l14 2 -3-14"/></svg>`;
   function buildScene() {
-    $("#slots").innerHTML = MODULES.map(m => `
-      <span class="slot" data-id="${m.id}"
-            style="--c:${m.color};--sx:${(m.fx * OUT * CM).toFixed(1)}px;--sz:${(m.fz * OUT * CM).toFixed(1)}px"></span>`).join("");
-
-    $("#trays").innerHTML = MODULES.map((m, i) => `
-      <div class="tray" data-id="${m.id}" style="--c:${m.color};--y:${(packY(i) * CM).toFixed(1)}px">
-        <span class="tray__shadow"></span>
-        <div class="tray__face tray__face--u"></div>
-        <div class="tray__face tray__face--b"></div>
-        <div class="tray__face tray__face--l"></div>
-        <div class="tray__face tray__face--r"></div>
-        <div class="tray__face tray__face--f">
-          <span class="tray__spine"><b>${m.name}</b><i>${m.code} · 15 CM</i></span>
-        </div>
-        <div class="tray__face tray__face--t">
-          <span class="tray__band"><span>${m.code}</span><span>SEGMENT ${i + 1} OF 4</span></span>
-          <span class="tray__seam"></span>
-          <span class="tray__lid">${m.icon}<span class="tray__name">${m.name}</span></span>
-        </div>
-      </div>`).join("");
-
-    $("#annots").innerHTML = MODULES.map((m, i) => `
-      <figure class="annot annot--${m.pos}" data-id="${m.id}" style="--c:${m.color};margin:0">
-        <figcaption>
-          <span class="annot__key">${m.code} · Segment ${i + 1} · 10 cm</span>
-          <h4 class="annot__title">${m.name}</h4>
-          <p class="annot__desc">${m.concept}</p>
-        </figcaption>
-        ${ARROW}
-      </figure>`).join("");
-
+    $("#slots").innerHTML = MODULES.map(m => `<span class="slot" data-id="${m.id}" style="--c:${m.color};--sx:${(m.fx * OUT * CM).toFixed(1)}px;--sz:${(m.fz * OUT * CM).toFixed(1)}px"></span>`).join("");
+    $("#trays").innerHTML = MODULES.map((m, i) => `<div class="tray" data-id="${m.id}" style="--c:${m.color};--y:${(packY(i) * CM).toFixed(1)}px"><span class="tray__shadow"></span><div class="tray__face tray__face--u"></div><div class="tray__face tray__face--b"></div><div class="tray__face tray__face--l"></div><div class="tray__face tray__face--r"></div><div class="tray__face tray__face--f"><span class="tray__spine"><b>${m.name}</b><i>${m.code} · 15 CM</i></span></div><div class="tray__face tray__face--t"><span class="tray__band"><span>${m.code}</span><span>SEGMENT ${i + 1} OF 4</span></span><span class="tray__seam"></span><span class="tray__lid">${m.icon}<span class="tray__name">${m.name}</span></span></div></div>`).join("");
+    $("#annots").innerHTML = MODULES.map((m, i) => `<figure class="annot annot--${m.pos}" data-id="${m.id}" style="--c:${m.color};margin:0"><figcaption><span class="annot__key">${m.code} · Segment ${i + 1} · 10 cm</span><h4 class="annot__title">${m.name}</h4><p class="annot__desc">${m.concept}</p></figcaption>${ARROW}</figure>`).join("");
     return { trays: $$(".tray"), annots: $$(".annot"), slots: $$(".slot") };
   }
 
@@ -1528,33 +1118,21 @@ html, body {
     const flaps = { front: $('[data-flap="front"]'), back: $('[data-flap="back"]'), left: $('[data-flap="left"]'), right: $('[data-flap="right"]') };
     const steps = $$(".step"), rail = $$(".rail__item");
     if (!track) return;
-
     const ease = t => 1 - Math.pow(1 - t, 3);
     const T0 = 0.44; const GAP = 0.115; const LIFT = 0.055; const HOLD = 0.050; const MOVE = 0.065;
 
-    // تم إضافة حل الحركة والتداخل البصري هنا
-function place(t, i, p) {
+    function place(t, i, p) {
       const start = T0 + i * GAP;
-      const lift   = ease(clamp((p - start) / LIFT, 0, 1));
+      const lift = ease(clamp((p - start) / LIFT, 0, 1));
       const travel = ease(clamp((p - start - HOLD) / MOVE, 0, 1));
       const d = MODULES[i];
-
-      const LIFT_MAX = -60; // الارتفاع المكسيموم للبكس
-
-      // نعتمد هنا على الإحداثيات المخصصة tx و ty لكل صندوق لمنع أي تداخل
+      const LIFT_MAX = -60;
       const y = packY(i) + lift * (LIFT_MAX - packY(i)) + travel * (d.ty - LIFT_MAX);
       const x = travel * d.tx;
-      const z = travel * (d.fz * 20); // التباعد بالعمق
-
-      t.style.setProperty("--y", (y * CM).toFixed(1) + "px");
-      t.style.setProperty("--x", (x * CM).toFixed(1) + "px");
-      t.style.setProperty("--z", (z * CM).toFixed(1) + "px");
-      
+      const z = travel * (d.fz * 20);
+      t.style.setProperty("--y", (y * CM).toFixed(1) + "px"); t.style.setProperty("--x", (x * CM).toFixed(1) + "px"); t.style.setProperty("--z", (z * CM).toFixed(1) + "px");
       t.style.setProperty("--shade", (0.5 * (lift - (travel * 0.4))).toFixed(3));
-
-      // تحديث الظل والمربعات لتتطابق تماماً مع مكان الهبوط النهائي
       slots[i].style.transform = `translate(-50%,-50%) translate3d(${(d.tx * CM).toFixed(1)}px, ${(d.ty * CM).toFixed(1)}px, ${(d.fz * 20 * CM).toFixed(1)}px) rotateX(90deg)`;
-      
       slots[i].style.setProperty("--on", (0.85 * lift).toFixed(3));
       annots[i].classList.toggle("is-on", travel > 0.55);
     }
@@ -1570,67 +1148,36 @@ function place(t, i, p) {
     }
 
     let ticking = false;
-
     function render() {
       ticking = false;
       const total = track.offsetHeight - window.innerHeight;
       const p = clamp(-track.getBoundingClientRect().top / total, 0, 1);
-
-      rig.style.setProperty("--ry", range(p, 0, 1, -32, -13) + "deg");
-      rig.style.setProperty("--rx", range(p, 0, 0.5, -6, -25) + "deg");
-      rig.style.setProperty("--sc", range(p, 0.3, 0.9, 1, 0.8));
-
-      const fb = range(p, 0.14, 0.30, 0, 96);
-      const lr = range(p, 0.26, 0.42, 0, 102);
-      flaps.front.style.setProperty("--f", fb + "deg");
-      flaps.back.style.setProperty("--f",  fb + "deg");
-      flaps.left.style.setProperty("--f",  lr + "deg");
-      flaps.right.style.setProperty("--f", lr + "deg");
-
+      rig.style.setProperty("--ry", range(p, 0, 1, -32, -13) + "deg"); rig.style.setProperty("--rx", range(p, 0, 0.5, -6, -25) + "deg"); rig.style.setProperty("--sc", range(p, 0.3, 0.9, 1, 0.8));
+      const fb = range(p, 0.14, 0.30, 0, 96); const lr = range(p, 0.26, 0.42, 0, 102);
+      flaps.front.style.setProperty("--f", fb + "deg"); flaps.back.style.setProperty("--f", fb + "deg"); flaps.left.style.setProperty("--f", lr + "deg"); flaps.right.style.setProperty("--f", lr + "deg");
       gauge.style.setProperty("--gauge", range(p, 0.36, 0.46, 1, 0).toFixed(2));
-
       trays.forEach((t, i) => place(t, i, p));
-
       const stage = p < 0.14 ? 0 : p < 0.44 ? 1 : p < 0.92 ? 2 : 3;
       steps.forEach((s, i) => s.classList.toggle("is-active", i === stage));
       rail.forEach((r, i) => r.classList.toggle("is-on", i <= stage));
       hint.style.setProperty("--hint", String(clamp(1 - p * 6, 0, 1)));
     }
-
     const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
-    window.addEventListener("scroll", onScroll, { passive:true });
-    window.addEventListener("resize", onScroll);
-    render();
+    window.addEventListener("scroll", onScroll, { passive:true }); window.addEventListener("resize", onScroll); render();
   }
 
-  /* ==========================================================
-     KIT CARDS
-     ========================================================== */
+  /* KITS CARDS */
   function buildCards() {
-    $("#kitsGrid").innerHTML = MODULES.map(m => `
-      <article class="card reveal">
-        <span class="card__badge">${m.age}</span>
-        <div class="card__art" style="--c:${m.color}">${m.icon}</div>
-        <div class="card__body">
-          <h3>${m.name}</h3>
-          <p>${m.desc}</p>
-          <p class="card__meta"><span><b>${m.parts}</b> · ${m.builds}</span><span class="card__price">$${m.price}</span></p>
-          <button class="card__add" data-add="${m.id}">Add to cart</button>
-        </div>
-      </article>`).join("");
+    $("#kitsGrid").innerHTML = MODULES.map(m => `<article class="card reveal"><span class="card__badge">${m.age}</span><div class="card__art" style="--c:${m.color}">${m.icon}</div><div class="card__body"><h3>${m.name}</h3><p>${m.desc}</p><p class="card__meta"><span><b>${m.parts}</b> · ${m.builds}</span><span class="card__price">$${m.price}</span></p><button class="card__add" data-add="${m.id}">Add to cart</button></div></article>`).join("");
   }
 
-  /* ==========================================================
-     CART + CHECKOUT
-     ========================================================== */
+  /* CART + CHECKOUT */
   const Cart = (() => {
     const state = { items: new Map(), pane: "cart" };
     const PANES = ["cart", "details", "pay", "done"];
     const LABELS = { cart:"Step 1 of 3 · Cart", details:"Step 2 of 3 · Delivery", pay:"Step 3 of 3 · Payment", done:"Order complete" };
     const TITLES = { cart:"Your cart", details:"Delivery", pay:"Payment", done:"Thanks!" };
-
-    const drawer = $("#drawer"), backdrop = $("#backdrop"), foot = $("#drawerFoot");
-    const list = $("#cartList"), countEl = $("#cartCount"), toastEl = $("#toast");
+    const drawer = $("#drawer"), backdrop = $("#backdrop"), foot = $("#drawerFoot"), list = $("#cartList"), countEl = $("#cartCount"), toastEl = $("#toast");
     let lastFocus = null, toastTimer = null;
 
     const count = () => [...state.items.values()].reduce((n, i) => n + i.qty, 0);
@@ -1638,169 +1185,34 @@ function place(t, i, p) {
     const shipping = () => (state.items.size === 0 || subtotal() >= SHIPPING_FREE_OVER) ? 0 : SHIPPING_FLAT;
     const total = () => subtotal() + shipping();
 
-    function toast(msg) {
-      toastEl.textContent = msg;
-      toastEl.classList.add("is-on");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 2200);
-    }
-
-    function add(id) {
-      const p = CATALOG[id];
-      if (!p) return;
-      const line = state.items.get(id) || { ...p, qty:0 };
-      line.qty += 1;
-      state.items.set(id, line);
-      bump();
-      render();
-      toast(`${p.name} added`);
-      open();
-    }
-
-    function setQty(id, delta) {
-      const line = state.items.get(id);
-      if (!line) return;
-      line.qty += delta;
-      if (line.qty <= 0) state.items.delete(id); else state.items.set(id, line);
-      render();
-    }
-
+    function toast(msg) { toastEl.textContent = msg; toastEl.classList.add("is-on"); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 2200); }
+    function add(id) { const p = CATALOG[id]; if (!p) return; const line = state.items.get(id) || { ...p, qty:0 }; line.qty += 1; state.items.set(id, line); countEl.classList.remove("pop"); void countEl.offsetWidth; countEl.classList.add("pop"); render(); toast(`${p.name} added`); open(); }
+    function setQty(id, delta) { const line = state.items.get(id); if (!line) return; line.qty += delta; if (line.qty <= 0) state.items.delete(id); else state.items.set(id, line); render(); }
     function remove(id) { state.items.delete(id); render(); }
-
-    function bump() {
-      countEl.classList.remove("pop");
-      void countEl.offsetWidth;
-      countEl.classList.add("pop");
-    }
-
-    function open() {
-      lastFocus = document.activeElement;
-      drawer.classList.add("is-open");
-      backdrop.classList.add("is-open");
-      drawer.setAttribute("aria-hidden", "false");
-      document.body.classList.add("is-locked");
-      $("#drawerClose").focus();
-    }
-    function close() {
-      drawer.classList.remove("is-open");
-      backdrop.classList.remove("is-open");
-      drawer.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("is-locked");
-      if (lastFocus) lastFocus.focus();
-      if (state.pane === "done") { state.items.clear(); go("cart"); }
-    }
-
-    function go(pane) {
-      state.pane = pane;
-      $$(".pane").forEach(el => el.classList.toggle("is-active", el.dataset.pane === pane));
-      $("#drawerTitle").textContent = TITLES[pane];
-      $("#drawerStep").textContent = LABELS[pane];
-      render();
-    }
-
-    function validate() {
-      let ok = true;
-      $$('[data-pane="details"] .field[data-req]').forEach(f => {
-        const input = $("input", f);
-        const val = input.value.trim();
-        const bad = !val || (input.type === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val));
-        f.classList.toggle("is-bad", bad);
-        if (bad && ok) { input.focus(); ok = false; }
-      });
-      return ok;
-    }
-
-    function totalsMarkup() {
-      return `
-        <div><span>Subtotal</span><span>${money(subtotal())}</span></div>
-        <div><span>Shipping</span><span>${shipping() === 0 ? "Free" : money(shipping())}</span></div>
-        <div class="grand"><span>Total</span><span>${money(total())}</span></div>`;
-    }
+    
+    function open() { lastFocus = document.activeElement; drawer.classList.add("is-open"); backdrop.classList.add("is-open"); drawer.setAttribute("aria-hidden", "false"); document.body.classList.add("is-locked"); $("#drawerClose").focus(); }
+    function close() { drawer.classList.remove("is-open"); backdrop.classList.remove("is-open"); drawer.setAttribute("aria-hidden", "true"); document.body.classList.remove("is-locked"); if (lastFocus) lastFocus.focus(); if (state.pane === "done") { state.items.clear(); go("cart"); } }
+    function go(pane) { state.pane = pane; $$(".pane").forEach(el => el.classList.toggle("is-active", el.dataset.pane === pane)); $("#drawerTitle").textContent = TITLES[pane]; $("#drawerStep").textContent = LABELS[pane]; render(); }
+    function validate() { let ok = true; $$('[data-pane="details"] .field[data-req]').forEach(f => { const input = $("input", f); const val = input.value.trim(); const bad = !val || (input.type === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val)); f.classList.toggle("is-bad", bad); if (bad && ok) { input.focus(); ok = false; } }); return ok; }
+    function totalsMarkup() { return `<div><span>Subtotal</span><span>${money(subtotal())}</span></div><div><span>Shipping</span><span>${shipping() === 0 ? "Free" : money(shipping())}</span></div><div class="grand"><span>Total</span><span>${money(total())}</span></div>`; }
 
     function render() {
-      const n = count();
-      countEl.textContent = n;
-      $("#cartBtn").setAttribute("aria-label", `Open cart, ${n} item${n === 1 ? "" : "s"}`);
-
+      const n = count(); countEl.textContent = n; $("#cartBtn").setAttribute("aria-label", `Open cart, ${n} item${n === 1 ? "" : "s"}`);
       if (state.items.size === 0) {
-        list.innerHTML = `
-          <div class="empty">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h2l2.2 11h9.3l2-7.5H7"/><circle cx="10" cy="19.5" r="1.6"/><circle cx="17.5" cy="19.5" r="1.6"/>
-            </svg>
-            <p>Nothing in the cart yet.</p>
-            <button class="btn btn--dark" data-add="box">Add the invention box</button>
-          </div>`;
+        list.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h2l2.2 11h9.3l2-7.5H7"/><circle cx="10" cy="19.5" r="1.6"/><circle cx="17.5" cy="19.5" r="1.6"/></svg><p>Nothing in the cart yet.</p><button class="btn btn--dark" data-add="box">Add the invention box</button></div>`;
       } else {
-        list.innerHTML = [...state.items.values()].map(i => `
-          <div class="line-item">
-            <span class="line-item__thumb" style="--c:${i.color}">${i.icon}</span>
-            <div>
-              <h4>${i.name}</h4>
-              <small>${i.code}</small>
-              <span class="qty">
-                <button data-qty="-1" data-id="${i.id}" aria-label="Remove one ${i.name}">−</button>
-                <span>${i.qty}</span>
-                <button data-qty="1" data-id="${i.id}" aria-label="Add one ${i.name}">+</button>
-              </span>
-            </div>
-            <div class="line-item__right">
-              <span class="line-item__price">${money(i.price * i.qty)}</span>
-              <button class="line-item__kill" data-kill="${i.id}">Remove</button>
-            </div>
-          </div>`).join("");
+        list.innerHTML = [...state.items.values()].map(i => `<div class="line-item"><span class="line-item__thumb" style="--c:${i.color}">${i.icon}</span><div><h4>${i.name}</h4><small>${i.code}</small><span class="qty"><button data-qty="-1" data-id="${i.id}">−</button><span>${i.qty}</span><button data-qty="1" data-id="${i.id}">+</button></span></div><div class="line-item__right"><span class="line-item__price">${money(i.price * i.qty)}</span><button class="line-item__kill" data-kill="${i.id}">Remove</button></div></div>`).join("");
       }
-
       $("#paySummary").innerHTML = totalsMarkup();
-
-      if (state.pane === "cart") {
-        foot.innerHTML = state.items.size
-          ? `<div class="totals">${totalsMarkup()}</div>
-             <button class="btn btn--primary" data-go="details">Checkout</button>
-             <p class="bundle__note" style="color:var(--ink-soft)">Free shipping over $${SHIPPING_FREE_OVER}</p>`
-          : `<button class="btn btn--dark" data-close>Keep browsing</button>`;
-      } else if (state.pane === "details") {
-        foot.innerHTML = `<button class="btn btn--primary" data-go="pay">Continue to payment</button>
-                          <a class="back-link" data-go="cart">Back to cart</a>`;
-      } else if (state.pane === "pay") {
-        foot.innerHTML = `<button class="btn btn--primary" data-place>Pay ${money(total())}</button>
-                          <a class="back-link" data-go="details">Back to delivery</a>`;
-      } else {
-        foot.innerHTML = `<button class="btn btn--dark" data-close>Done</button>`;
-      }
+      if (state.pane === "cart") { foot.innerHTML = state.items.size ? `<div class="totals">${totalsMarkup()}</div><button class="btn btn--primary" data-go="details">Checkout</button><p class="bundle__note" style="color:var(--ink-soft)">Free shipping over $${SHIPPING_FREE_OVER}</p>` : `<button class="btn btn--dark" data-close>Keep browsing</button>`; }
+      else if (state.pane === "details") { foot.innerHTML = `<button class="btn btn--primary" data-go="pay">Continue to payment</button><a class="back-link" data-go="cart">Back to cart</a>`; }
+      else if (state.pane === "pay") { foot.innerHTML = `<button class="btn btn--primary" data-place>Pay ${money(total())}</button><a class="back-link" data-go="details">Back to delivery</a>`; }
+      else { foot.innerHTML = `<button class="btn btn--dark" data-close>Done</button>`; }
     }
 
     async function place() {
-      const payload = {
-        name: $("#f-name")?.value?.trim?.() || "",
-        email: $("#f-email")?.value?.trim?.() || "",
-        address: $("#f-addr")?.value?.trim?.() || "",
-        city: $("#f-city")?.value?.trim?.() || "",
-        zip: $("#f-zip")?.value?.trim?.() || "",
-        country: $("#f-country")?.value?.trim?.() || undefined,
-        method: (() => {
-          const checked = document.querySelector('input[name="method"]:checked');
-          return checked ? checked.value : 'card';
-        })(),
-        items: [...state.items.values()].map(i => ({ id: i.id, name: i.name, qty: i.qty, price: i.price })),
-        totals: { subtotal: subtotal(), shipping: shipping(), total: total() }
-      };
-
-      try {
-        const resp = await fetch('http://localhost:3000/api/checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const data = await resp.json();
-        const code = data?.code || ('ORD-' + String(Math.floor(100000 + Math.random() * 899999)));
-        $("#orderCode").textContent = code;
-      } catch (e) {
-        const code = "ORD-" + String(Math.floor(100000 + Math.random() * 899999));
-        $("#orderCode").textContent = code;
-      }
+      const code = "ORD-" + String(Math.floor(100000 + Math.random() * 899999));
+      $("#orderCode").textContent = code;
       go("done");
     }
 
@@ -1808,51 +1220,31 @@ function place(t, i, p) {
       document.addEventListener("click", e => {
         const t = e.target.closest("[data-add],[data-qty],[data-kill],[data-go],[data-place],[data-close]");
         if (!t) return;
-        if (t.dataset.add)   { add(t.dataset.add); if (t.classList.contains("card__add")) { t.textContent = "Added ✓"; t.classList.add("is-added"); setTimeout(() => { t.textContent = "Add to cart"; t.classList.remove("is-added"); }, 1600); } }
-        if (t.dataset.qty)   setQty(t.dataset.id, Number(t.dataset.qty));
-        if (t.dataset.kill)  remove(t.dataset.kill);
-        if (t.dataset.go)    { if (t.dataset.go === "pay" && !validate()) return; go(t.dataset.go); }
-        if (t.hasAttribute("data-place"))  place();
-        if (t.hasAttribute("data-close"))  close();
+        if (t.dataset.add) { add(t.dataset.add); if (t.classList.contains("card__add")) { t.textContent = "Added ✓"; t.classList.add("is-added"); setTimeout(() => { t.textContent = "Add to cart"; t.classList.remove("is-added"); }, 1600); } }
+        if (t.dataset.qty) setQty(t.dataset.id, Number(t.dataset.qty));
+        if (t.dataset.kill) remove(t.dataset.kill);
+        if (t.dataset.go) { if (t.dataset.go === "pay" && !validate()) return; go(t.dataset.go); }
+        if (t.hasAttribute("data-place")) place();
+        if (t.hasAttribute("data-close")) close();
       });
-
-      $("#cartBtn").addEventListener("click", open);
-      $("#drawerClose").addEventListener("click", close);
-      $("#backdrop").addEventListener("click", close);
-      document.addEventListener("keydown", e => {
-        if (e.key === "Escape" && drawer.classList.contains("is-open")) close();
-      });
-
+      $("#cartBtn").addEventListener("click", open); $("#drawerClose").addEventListener("click", close); $("#backdrop").addEventListener("click", close);
+      document.addEventListener("keydown", e => { if (e.key === "Escape" && drawer.classList.contains("is-open")) close(); });
       render();
     }
-
     return { init };
   })();
 
-  /* ==========================================================
-     REVEAL
-     ========================================================== */
+  /* REVEAL */
   function initReveal() {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
-    }, { threshold:0.15, rootMargin:"0px 0px -8% 0px" });
+    const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }); }, { threshold:0.15, rootMargin:"0px 0px -8% 0px" });
     $$(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
   }
 
-  /* ========================== BOOT ========================== */
+  /* BOOT */
   document.addEventListener("DOMContentLoaded", () => {
-    initNav();
-    buildCards();
-    initReveal();
-    Cart.init();
-    
-    // استدعاء الشات بوت
-    initChatbot(); 
-    
-    const scene = buildScene();
-    initScrolly(scene.trays, scene.annots, scene.slots);
+    initNav(); buildCards(); initReveal(); Cart.init(); initChatbot();
+    const scene = buildScene(); initScrolly(scene.trays, scene.annots, scene.slots);
   });
-
 })();
 </script>
 </body>
